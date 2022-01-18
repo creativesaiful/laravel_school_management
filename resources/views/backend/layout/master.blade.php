@@ -17,6 +17,16 @@
 	<link rel="stylesheet" href="{{asset('backend/css/style.css')}}">
 	<link rel="stylesheet" href="{{asset('backend/css/skin_color.css')}}">
 
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
   </head>
 
 <body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
@@ -74,8 +84,63 @@
 
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
-  
+
+    <script>
+        @if (Session::has('message'))
+            var type = ("{{ Session::get('type') }}");
+            var message = ("{{ Session::get('message') }}");
+            switch (type) {
+            case 'success':
+            toastr.success(message);
+            break;
+            case 'warning':
+            toastr.warning(message);
+            break;
+            case 'error':
+            toastr.error(message);
+            break;
+            case 'info':
+            toastr.info(message);
+            break;
+            }
+        @endif
+    </script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.delete').click(function(e) {
+                e.preventDefault();
+                var link = $(this).attr('href');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link;
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+            });
+        });
+    </script>
+
+
+
 </body>
 </html>

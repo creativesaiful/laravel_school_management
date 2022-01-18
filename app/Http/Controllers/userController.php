@@ -51,7 +51,10 @@ class userController extends Controller
 
             $pre_img_path = Auth::user()->profile_photo_path;
 
-          unlink('storage/'.$pre_img_path);
+            if(!empty($pre_img_path)){
+                unlink('storage/'.$pre_img_path);
+            }
+
 
             $imgPath = $request->file('profile_pic');
 
@@ -174,9 +177,17 @@ class userController extends Controller
 
 
     public function deleteUser($id){
-        User::where('id', '=', $id)->delete();
 
-        return back()->with(['type'=>'success', 'message'=>'User delete successfully']);
+        $pre_img_path = User::find($id)->profile_photo_path;
+
+
+
+         if(!empty($pre_img_path)){
+                unlink('storage/'.$pre_img_path);
+         }
+
+        User::where('id', '=', $id)->delete();
+        return back();
     }
 
 }

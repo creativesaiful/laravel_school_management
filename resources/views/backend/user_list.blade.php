@@ -70,7 +70,7 @@
                                         <td>
 
 
-                                            <a href="{{route('delete.user',$alluser->id )}}">Delete</a>
+                          <a href="{{route('delete.user',$alluser->id )}}" class="delete">Delete</a>
                                         </td>
 
                                     </tr>
