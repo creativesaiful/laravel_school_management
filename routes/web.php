@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\classController;
+
+use App\Http\Controllers\groupController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,3 +55,23 @@ Route::get('/user/add/', [userController::class, 'addUserForm'])->name('add.user
 
 Route::post('/user/add/', [userController::class, 'addUser'])->name('add.user');
 Route::get('/user/delete/{id}', [userController::class, 'deleteUser'])->name('delete.user');
+
+
+//Class route
+
+Route::prefix('class')->group(function(){
+    Route::get('all', [classController::class, 'viewClass'])->name('view.class');
+    Route::post('store', [classController::class, 'storeClass'])->name('store.class');
+    Route::get('edit/{id}', [classController::class, 'editClass'])->name('edit.class');
+    Route::post('update', [classController::class, 'updateClass'])->name('update.class');
+    Route::get('delete/{id}', [classController::class, 'deleteClass'])->name('delete.class');
+});
+
+//Group Route
+Route::prefix('group')->group(function(){
+    Route::get('all', [groupController::class, 'viewGroup'])->name('view.group');
+    Route::post('store', [groupController::class, 'storeGroup'])->name('store.group');
+    Route::get('edit/{id}', [groupController::class, 'editGroup'])->name('edit.group');
+    Route::post('update', [groupController::class, 'updateGroup'])->name('update.group');
+    Route::get('delete/{id}', [groupController::class, 'deleteGroup'])->name('delete.group');
+});
