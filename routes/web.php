@@ -5,6 +5,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\classController;
 
 use App\Http\Controllers\groupController;
+use App\Http\Controllers\yearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +75,13 @@ Route::prefix('group')->group(function(){
     Route::get('edit/{id}', [groupController::class, 'editGroup'])->name('edit.group');
     Route::post('update', [groupController::class, 'updateGroup'])->name('update.group');
     Route::get('delete/{id}', [groupController::class, 'deleteGroup'])->name('delete.group');
+});
+
+//Year Route
+Route::prefix('year')->group(function(){
+    Route::get('all', [yearController::class, 'viewYear'])->name('view.year');
+    Route::post('store', [yearController::class, 'storeYear'])->name('store.year');
+    Route::get('edit/{id}', [yearController::class, 'editYear'])->name('edit.year');
+    Route::post('update', [yearController::class, 'updateYear'])->name('update.year');
+    Route::get('delete/{id}', [yearController::class, 'deleteYear'])->name('delete.year');
 });

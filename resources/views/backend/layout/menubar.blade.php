@@ -68,30 +68,34 @@
             <li class="treeview">
                 <a href="#">
                     <i data-feather="book"></i>
-                    <span>Class</span>
+                    <span>System setting</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Route::currentRouteName() == 'view.class' ? 'active' : '' }}" ><a href="{{ route('view.class') }}"><i class="ti-more"></i>All Class</a></li>
+                    <li class="{{ Route::currentRouteName() == 'view.class' ? 'active' : '' }}" ><a href="{{ route('view.class') }}"><i class="ti-more"></i>Class</a></li>
+
+
+                    <li class="{{ Route::currentRouteName() == 'view.group' ? 'active' : '' }}" ><a href="{{ route('view.group') }}"><i class="ti-more"></i>Group</a></li>
+
+
+                    <li class="{{ Route::currentRouteName() == 'view.year' ? 'active' : '' }}" ><a href="{{ route('view.year') }}"><i class="ti-more"></i>Year</a></li>
+
+                    <li class="" ><a href=""><i class="ti-more"></i>Exam</a></li>
+
+                    <li class="" ><a href=""><i class="ti-more"></i>Fee Catagory</a></li>
+
+                    <li class="" ><a href=""><i class="ti-more"></i>Year</a></li>
 
                 </ul>
+
+
+
+
             </li>
 
-            <li class="treeview">
-                <a href="#">
-                    <i data-feather="book"></i>
-                    <span>Group</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ Route::currentRouteName() == 'view.group' ? 'active' : '' }}" ><a href="{{ route('view.group') }}"><i class="ti-more"></i>All group</a></li>
 
-                </ul>
-            </li>
 
             <li class="header nav-small-cap">User Interface</li>
 
