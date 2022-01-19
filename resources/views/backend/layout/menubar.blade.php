@@ -82,7 +82,7 @@
 
                     <li class="{{ Route::currentRouteName() == 'view.year' ? 'active' : '' }}" ><a href="{{ route('view.year') }}"><i class="ti-more"></i>Year</a></li>
 
-                    <li class="" ><a href=""><i class="ti-more"></i>Exam</a></li>
+                    <li class="{{ Route::currentRouteName() == 'exam.index' ? 'active' : '' }}" ><a href="{{route('exam.index')}}"><i class="ti-more"></i>Exam</a></li>
 
                     <li class="" ><a href=""><i class="ti-more"></i>Fee Catagory</a></li>
 

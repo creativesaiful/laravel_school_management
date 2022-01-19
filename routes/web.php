@@ -6,7 +6,7 @@ use App\Http\Controllers\classController;
 
 use App\Http\Controllers\groupController;
 use App\Http\Controllers\yearController;
-
+use App\Http\Controllers\examController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,3 +85,7 @@ Route::prefix('year')->group(function(){
     Route::post('update', [yearController::class, 'updateYear'])->name('update.year');
     Route::get('delete/{id}', [yearController::class, 'deleteYear'])->name('delete.year');
 });
+
+//Exam Route
+
+Route::resource('exam', examController::class);
