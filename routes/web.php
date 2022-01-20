@@ -7,6 +7,8 @@ use App\Http\Controllers\classController;
 use App\Http\Controllers\groupController;
 use App\Http\Controllers\yearController;
 use App\Http\Controllers\examController;
+use App\Http\Controllers\shiftController;
+use App\Http\Controllers\feecataController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,3 +91,11 @@ Route::prefix('year')->group(function(){
 //Exam Route
 
 Route::resource('exam', examController::class);
+
+//Shift Route
+
+Route::resource('shift', shiftController::class);
+
+//Fee category Route
+
+Route::resource('feecata', feecataController::class);

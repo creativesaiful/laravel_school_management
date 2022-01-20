@@ -84,7 +84,9 @@
 
                     <li class="{{ Route::currentRouteName() == 'exam.index' ? 'active' : '' }}" ><a href="{{route('exam.index')}}"><i class="ti-more"></i>Exam</a></li>
 
-                    <li class="" ><a href=""><i class="ti-more"></i>Fee Catagory</a></li>
+                    <li class="{{ Route::currentRouteName() == 'shift.index' ? 'active' : '' }}" ><a href="{{route('shift.index')}}"><i class="ti-more"></i>Shift</a></li>
+
+      <li class="" ><a href="{{route('feecata.index')}}"><i class="ti-more"></i>Fee Catagory</a></li>
 
                     <li class="" ><a href=""><i class="ti-more"></i>Year</a></li>
 

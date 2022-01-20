@@ -19,7 +19,7 @@ class yearController extends Controller
 
 
        $request->validate([
-           'year'=>'required |min:3',
+           'year'=>'required |min:3|unique:years,year',
         ]);
 
 
@@ -49,7 +49,7 @@ class yearController extends Controller
      public function updateYear(Request $request){
 
         $request->validate([
-            'year'=>'required',
+            'year'=>'required |min:3|unique:years,year',
         ]);
 
         Year::where('id', $request->id)->update([

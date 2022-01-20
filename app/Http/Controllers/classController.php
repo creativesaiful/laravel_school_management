@@ -17,7 +17,7 @@ class classController extends Controller
     public function storeClass(Request $request){
 
         $request->validate([
-            'class_name'=>'required |min:3',
+            'class_name'=>'required |min:3|unique:all_classes,class_name',
         ]);
 
 

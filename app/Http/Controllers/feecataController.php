@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Exam;
-class examController extends Controller
+use App\Models\FeeCate;
+
+
+class feecataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,9 @@ class examController extends Controller
      */
     public function index()
     {
-        $examInfo = Exam::latest()->get();
-        return view("backend.exam.view", compact('examInfo') );
+        $feecateInfo = FeeCate::latest()->get();
+
+        return view('backend.feecate.view' , ['feecateInfo'=>$feecateInfo]);
     }
 
     /**
@@ -36,16 +39,16 @@ class examController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'exam_name'=>'required|unique:exams,exam_name',
+            'fee_cata_name'=>'required|unique:feecates,fee_cata_name',
         ]);
 
-        Exam::insert([
-            'exam_name'=>$request->exam_name,
+        FeeCate::insert([
+            'fee_cata_name'=>$request->fee_cata_name,
         ]);
 
         $notification = [
             'type'=>'success',
-            'message'=>'Exam added successfully'
+            'message'=>'Fees Category added successfully'
         ];
 
         return back()->with($notification);
@@ -70,8 +73,8 @@ class examController extends Controller
      */
     public function edit($id)
     {
-        $examInfo = Exam::find($id);
-        return view('backend.exam.edit', compact('examInfo'));
+        $feecateInfo = FeeCate::find($id);
+        return view('backend.feecate.edit', ['feecateInfo'=>$feecateInfo]);
     }
 
     /**
@@ -84,20 +87,20 @@ class examController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'exam_name'=>'required|unique:exams,exam_name',
+            'fee_cata_name'=>'required|unique:feecates,fee_cata_name',
         ]);
 
-        Exam::where('id', $request->id)->update([
-            'exam_name'=> $request->exam_name,
+        FeeCate::where('id', $request->id)->update([
+            'fee_cata_name'=> $request->fee_cata_name,
         ]);
 
 
         $notification = [
             'type'=>'info',
-            'message'=>'Exam updated successfully'
+            'message'=>'Fees Category updated successfully'
         ];
 
-        return redirect()->route('exam.index')->with($notification);
+        return redirect()->route('feecata.index')->with($notification);
     }
 
     /**
@@ -108,7 +111,7 @@ class examController extends Controller
      */
     public function destroy($id)
     {
-        Exam::destroy($id);
+        FeeCate::destroy($id);
         return back();
     }
 }

@@ -20,7 +20,7 @@ class groupController extends Controller
 
 
        $request->validate([
-           'group_name'=>'required |min:3',
+           'group_name'=>'required |min:3|unique:groups,group_name',
         ]);
 
 
@@ -50,7 +50,7 @@ class groupController extends Controller
      public function updateGroup(Request $request){
 
         $request->validate([
-            'group_name'=>'required',
+            'group_name'=>'required |min:3|unique:groups,group_name',
         ]);
 
         Group::where('id', $request->id)->update([

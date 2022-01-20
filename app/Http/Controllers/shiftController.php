@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Exam;
-class examController extends Controller
+use App\Models\Shift;
+
+
+class shiftController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,9 @@ class examController extends Controller
      */
     public function index()
     {
-        $examInfo = Exam::latest()->get();
-        return view("backend.exam.view", compact('examInfo') );
+        $shiftInfo = Shift::latest()->get();
+
+        return view('backend.shift.view' , ['shiftInfo'=>$shiftInfo]);
     }
 
     /**
@@ -36,16 +39,16 @@ class examController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'exam_name'=>'required|unique:exams,exam_name',
+            'shift_name'=>'required|unique:shifts,shift_name',
         ]);
 
-        Exam::insert([
-            'exam_name'=>$request->exam_name,
+        Shift::insert([
+            'shift_name'=>$request->shift_name,
         ]);
 
         $notification = [
             'type'=>'success',
-            'message'=>'Exam added successfully'
+            'message'=>'Shift added successfully'
         ];
 
         return back()->with($notification);
@@ -70,8 +73,8 @@ class examController extends Controller
      */
     public function edit($id)
     {
-        $examInfo = Exam::find($id);
-        return view('backend.exam.edit', compact('examInfo'));
+        $shiftInfo = Shift::find($id);
+        return view('backend.shift.edit', ['shiftInfo'=>$shiftInfo]);
     }
 
     /**
@@ -84,20 +87,20 @@ class examController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'exam_name'=>'required|unique:exams,exam_name',
+            'shift_name'=>'required|unique:shifts,shift_name',
         ]);
 
-        Exam::where('id', $request->id)->update([
-            'exam_name'=> $request->exam_name,
+        Shift::where('id', $request->id)->update([
+            'shift_name'=> $request->shift_name,
         ]);
 
 
         $notification = [
             'type'=>'info',
-            'message'=>'Exam updated successfully'
+            'message'=>'Shift updated successfully'
         ];
 
-        return redirect()->route('exam.index')->with($notification);
+        return redirect()->route('shift.index')->with($notification);
     }
 
     /**
@@ -108,7 +111,7 @@ class examController extends Controller
      */
     public function destroy($id)
     {
-        Exam::destroy($id);
+        Shift::destroy($id);
         return back();
     }
 }
