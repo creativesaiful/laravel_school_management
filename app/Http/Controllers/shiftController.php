@@ -86,9 +86,7 @@ class shiftController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'shift_name'=>'required|unique:shifts,shift_name',
-        ]);
+
 
         Shift::where('id', $request->id)->update([
             'shift_name'=> $request->shift_name,

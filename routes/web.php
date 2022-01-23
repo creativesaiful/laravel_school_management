@@ -9,6 +9,10 @@ use App\Http\Controllers\yearController;
 use App\Http\Controllers\examController;
 use App\Http\Controllers\shiftController;
 use App\Http\Controllers\feecataController;
+
+use App\Http\Controllers\subjectController;
+use App\Http\Controllers\feeAmountController;
+use App\Http\Controllers\desigController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,3 +103,14 @@ Route::resource('shift', shiftController::class);
 //Fee category Route
 
 Route::resource('feecata', feecataController::class);
+
+
+//Fee Amount
+Route::resource('feeamount', feeAmountController::class);
+
+//Subject Controller
+Route::resource('subject', subjectController::class);
+
+
+Route::resource('designation', desigController::class);
+

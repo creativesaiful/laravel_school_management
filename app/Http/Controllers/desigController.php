@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Exam;
-class examController extends Controller
+use App\Models\Designation;
+class desigController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class examController extends Controller
      */
     public function index()
     {
-        $examInfo = Exam::latest()->get();
-        return view("backend.exam.view", compact('examInfo') );
+       $desigInfo =  Designation::latest()->get();
+
+       return view('backend.designation.view', ['desigInfo'=>$desigInfo]);
     }
 
     /**
@@ -35,17 +36,18 @@ class examController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'exam_name'=>'required|unique:exams,exam_name',
-        ]);
-
-        Exam::insert([
-            'exam_name'=>$request->exam_name,
+        $request->validate(
+            [
+                'name'=>'required|unique:designations,name'
+            ]
+        );
+        Designation::insert([
+            'name'=>$request->name,
         ]);
 
         $notification = [
             'type'=>'success',
-            'message'=>'Exam added successfully'
+            'message'=>'Designation Added successfully'
         ];
 
         return back()->with($notification);
@@ -70,8 +72,9 @@ class examController extends Controller
      */
     public function edit($id)
     {
-        $examInfo = Exam::find($id);
-        return view('backend.exam.edit', compact('examInfo'));
+       $desigInfo =  Designation::find($id);
+
+        return view('backend.designation.edit', ['desigInfo'=>$desigInfo]);
     }
 
     /**
@@ -83,19 +86,16 @@ class examController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-
-        Exam::where('id', $request->id)->update([
-            'exam_name'=> $request->exam_name,
+        Designation::where('id', $id)->update([
+            'name'=> $request->name,
         ]);
-
 
         $notification = [
             'type'=>'info',
-            'message'=>'Exam updated successfully'
+            'message'=>'Designation updated successfully'
         ];
 
-        return redirect()->route('exam.index')->with($notification);
+        return redirect()->route('designation.index')->with($notification);
     }
 
     /**
@@ -106,7 +106,7 @@ class examController extends Controller
      */
     public function destroy($id)
     {
-        Exam::destroy($id);
+        Designation::destroy($id);
         return back();
     }
 }

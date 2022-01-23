@@ -74,22 +74,32 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Route::currentRouteName() == 'view.class' ? 'active' : '' }}" ><a href="{{ route('view.class') }}"><i class="ti-more"></i>Class</a></li>
+                    <li class="{{ Route::currentRouteName() == 'view.class' ? 'active' : '' }}"><a
+                            href="{{ route('view.class') }}"><i class="ti-more"></i>Class</a></li>
 
 
-                    <li class="{{ Route::currentRouteName() == 'view.group' ? 'active' : '' }}" ><a href="{{ route('view.group') }}"><i class="ti-more"></i>Group</a></li>
+                    <li class="{{ Route::currentRouteName() == 'view.group' ? 'active' : '' }}"><a
+                            href="{{ route('view.group') }}"><i class="ti-more"></i>Group</a></li>
 
 
-                    <li class="{{ Route::currentRouteName() == 'view.year' ? 'active' : '' }}" ><a href="{{ route('view.year') }}"><i class="ti-more"></i>Year</a></li>
+                    <li class="{{ Route::currentRouteName() == 'view.year' ? 'active' : '' }}"><a
+                            href="{{ route('view.year') }}"><i class="ti-more"></i>Year</a></li>
 
-                    <li class="{{ Route::currentRouteName() == 'exam.index' ? 'active' : '' }}" ><a href="{{route('exam.index')}}"><i class="ti-more"></i>Exam</a></li>
+                    <li class="{{ Route::currentRouteName() == 'exam.index' ? 'active' : '' }}"><a
+                            href="{{ route('exam.index') }}"><i class="ti-more"></i>Exam</a></li>
 
-                    <li class="{{ Route::currentRouteName() == 'shift.index' ? 'active' : '' }}" ><a href="{{route('shift.index')}}"><i class="ti-more"></i>Shift</a></li>
+                    <li class="{{ Route::currentRouteName() == 'shift.index' ? 'active' : '' }}"><a
+                            href="{{ route('shift.index') }}"><i class="ti-more"></i>Shift</a></li>
 
-      <li class="" ><a href="{{route('feecata.index')}}"><i class="ti-more"></i>Fee Catagory</a></li>
+                    <li class="{{ Route::currentRouteName() == 'feecata.index' ? 'active' : '' }}"><a href="{{ route('feecata.index') }}"><i class="ti-more"></i>Fee
+                            Catagory</a></li>
 
-                    <li class="" ><a href=""><i class="ti-more"></i>Year</a></li>
+                     <li class="{{ Route::currentRouteName() == 'feeamount.index' ? 'active' : '' }}"><a href="{{ route('feeamount.index') }}"><i class="ti-more"></i>Fee
+                                Catagory Ammount</a></li>
 
+                    <li class="{{ Route::currentRouteName() == 'subject.index' ? 'active' : '' }}"><a href="{{ route('subject.index') }}"><i class="ti-more"></i>Subject</a></li>
+
+                    <li class="{{ Route::currentRouteName() == 'designation.index' ? 'active' : '' }}"><a href="{{ route('designation.index') }}"><i class="ti-more"></i>Designation</a></li>
                 </ul>
 
 

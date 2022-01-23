@@ -86,9 +86,7 @@ class feecataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'fee_cata_name'=>'required|unique:feecates,fee_cata_name',
-        ]);
+
 
         FeeCate::where('id', $request->id)->update([
             'fee_cata_name'=> $request->fee_cata_name,

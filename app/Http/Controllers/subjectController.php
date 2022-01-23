@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Exam;
-class examController extends Controller
+use App\Models\Subject;
+class subjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class examController extends Controller
      */
     public function index()
     {
-        $examInfo = Exam::latest()->get();
-        return view("backend.exam.view", compact('examInfo') );
+        $subList = Subject::latest()->get();
+
+       return view('backend.subject.view', ['subList'=>$subList]);
     }
 
     /**
@@ -35,17 +36,22 @@ class examController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'exam_name'=>'required|unique:exams,exam_name',
+            'subject'=>'unique:subjects,subject',
         ]);
 
-        Exam::insert([
-            'exam_name'=>$request->exam_name,
+       $storeSubject =  Subject::insert([
+            'subject'=>$request->subject,
+            'full_mark'=>$request->full_mark,
+            'pass_mark'=>$request->pass_mark,
+            'subjective_mark'=>$request->subjective_mark,
+
         ]);
 
         $notification = [
             'type'=>'success',
-            'message'=>'Exam added successfully'
+            'message'=>'Subject added successfully'
         ];
 
         return back()->with($notification);
@@ -70,8 +76,8 @@ class examController extends Controller
      */
     public function edit($id)
     {
-        $examInfo = Exam::find($id);
-        return view('backend.exam.edit', compact('examInfo'));
+        $subInfo = Subject::find($id);
+        return view('backend.subject.edit', ['subInfo'=>$subInfo]);
     }
 
     /**
@@ -83,19 +89,20 @@ class examController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
 
-        Exam::where('id', $request->id)->update([
-            'exam_name'=> $request->exam_name,
+
+        Subject::where('id', $id )->update([
+            'subject'=>$request->subject,
+            'full_mark'=>$request->full_mark,
+            'pass_mark'=>$request->pass_mark,
+            'subjective_mark'=>$request->subjective_mark,
         ]);
-
-
         $notification = [
-            'type'=>'info',
-            'message'=>'Exam updated successfully'
+            'type'=>'success',
+            'message'=>'Subject Updated successfully'
         ];
 
-        return redirect()->route('exam.index')->with($notification);
+        return redirect()->route('subject.index')->with($notification);
     }
 
     /**
@@ -106,7 +113,7 @@ class examController extends Controller
      */
     public function destroy($id)
     {
-        Exam::destroy($id);
+        Subject::destroy($id);
         return back();
     }
 }
