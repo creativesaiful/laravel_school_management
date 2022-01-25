@@ -13,6 +13,7 @@ use App\Http\Controllers\feecataController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\feeAmountController;
 use App\Http\Controllers\desigController;
+use App\Http\Controllers\studentRegController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::get('/user', function () {
-    return view('backend\dashboard');
+    return view('backend/dashboard');
 });
 
 Route::get('/user/logout', [userController::class, 'userLogout'])->name('user.logout');
@@ -108,9 +109,11 @@ Route::resource('feecata', feecataController::class);
 //Fee Amount
 Route::resource('feeamount', feeAmountController::class);
 
-//Subject Controller
+//Subject Route
 Route::resource('subject', subjectController::class);
 
-
+//Designation
 Route::resource('designation', desigController::class);
 
+//Student Registration
+Route::resource('student', studentRegController::class);

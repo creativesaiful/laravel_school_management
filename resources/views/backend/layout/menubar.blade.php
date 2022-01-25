@@ -24,6 +24,10 @@
                 </a>
             </li>
 
+
+
+
+
             <li class="treeview">
                 <a href="">
                     <i data-feather="message-circle"></i>
@@ -49,6 +53,8 @@
                 </ul>
             </li>
 
+            @if (Auth::user()->role=='admin')
+
             <li class="treeview">
                 <a href="#">
                     <i data-feather="users"></i> <span>User Manageer</span>
@@ -65,10 +71,12 @@
                 </ul>
             </li>
 
+            @endif
+
             <li class="treeview">
                 <a href="#">
                     <i data-feather="book"></i>
-                    <span>System setting</span>
+                    <span>Setup Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -91,15 +99,46 @@
                     <li class="{{ Route::currentRouteName() == 'shift.index' ? 'active' : '' }}"><a
                             href="{{ route('shift.index') }}"><i class="ti-more"></i>Shift</a></li>
 
-                    <li class="{{ Route::currentRouteName() == 'feecata.index' ? 'active' : '' }}"><a href="{{ route('feecata.index') }}"><i class="ti-more"></i>Fee
+                    <li class="{{ Route::currentRouteName() == 'feecata.index' ? 'active' : '' }}"><a
+                            href="{{ route('feecata.index') }}"><i class="ti-more"></i>Fee
                             Catagory</a></li>
 
-                     <li class="{{ Route::currentRouteName() == 'feeamount.index' ? 'active' : '' }}"><a href="{{ route('feeamount.index') }}"><i class="ti-more"></i>Fee
-                                Catagory Ammount</a></li>
+                    <li class="{{ Route::currentRouteName() == 'feeamount.index' ? 'active' : '' }}"><a
+                            href="{{ route('feeamount.index') }}"><i class="ti-more"></i>Fee
+                            Catagory Ammount</a></li>
 
-                    <li class="{{ Route::currentRouteName() == 'subject.index' ? 'active' : '' }}"><a href="{{ route('subject.index') }}"><i class="ti-more"></i>Subject</a></li>
+                    <li class="{{ Route::currentRouteName() == 'subject.index' ? 'active' : '' }}"><a
+                            href="{{ route('subject.index') }}"><i class="ti-more"></i>Subject</a></li>
 
-                    <li class="{{ Route::currentRouteName() == 'designation.index' ? 'active' : '' }}"><a href="{{ route('designation.index') }}"><i class="ti-more"></i>Designation</a></li>
+                    <li class="{{ Route::currentRouteName() == 'designation.index' ? 'active' : '' }}"><a
+                            href="{{ route('designation.index') }}"><i class="ti-more"></i>Designation</a>
+                    </li>
+                </ul>
+
+
+
+
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="book"></i>
+                    <span>Student Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Route::currentRouteName() == 'student.index' ? 'active' : '' }}"><a
+                            href="{{ route('student.index') }}"><i class="ti-more"></i>Student List</a>
+                    </li>
+
+                    <li class="{{ Route::currentRouteName() == 'student.create' ? 'active' : '' }}"><a
+                        href="{{ route('student.create') }}"><i class="ti-more"></i>Student Registration</a>
+                </li>
+
+
+
                 </ul>
 
 

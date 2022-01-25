@@ -60,9 +60,9 @@
                 <select name="role" id="" class="form-control">
                     <option selected disabled>Select Role</option>
                     <option value="admin">Admin</option>
-                    <option value="editor">Editor</option>
-                    <option value="moderatro">Moderator</option>
-                    <option value="user">user</option>
+                    <option value="operator">Operator</option>
+                    <option value="user">User</option>
+
 
                 </select>
 

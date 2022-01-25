@@ -49,13 +49,12 @@
                                                 <select name="role">
                                                     <option value="admin" {{ $alluser->role == 'admin' ? 'selected' : '' }}>
                                                         Admin</option>
-                                                    <option value="editor" {{ $alluser->role == 'editor' ? 'selected' : '' }}>
-                                                        Etitor</option>
-                                                    <option value="moderator"
-                                                        {{ $alluser->role == 'moderator' ? 'selected' : '' }}>Moderator
+                                                    <option value="operator" {{ $alluser->role == 'operator' ? 'selected' : '' }}>
+                                                        Operator</option>
+                                                    <option value="user"
+                                                        {{ $alluser->role == 'user' ? 'selected' : '' }}>User
                                                     </option>
-                                                    <option value="user" {{ $alluser->role == 'user' ? 'selected' : '' }}>User
-                                                    </option>
+
                                                 </select>
 
                                                 <input type="submit" value="update" class="btn btn-sm btn-info">

@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title');
+@section('title')
 @section('content')
 
 
