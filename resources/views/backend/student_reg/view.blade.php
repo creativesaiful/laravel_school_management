@@ -29,7 +29,7 @@
                                 @foreach ($stuInfo as $stuInfo)
                                     <tr>
                                         <td>{{ $stuInfo->id }}</td>
-                                        <td>{{ $stuInfo->student_id }}</td>
+                                        <td>{{ $stuInfo->name }}</td>
 
                                         <td>
 
