@@ -20,16 +20,38 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Student name</th>
+                                    <th>ID No</th>
+
+
+                                    <th>Class</th>
+                                    <th>Roll</th>
+                                    <th>Year</th>
+                                    <th>Image</th>
                                     <th>Action</th>
 
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($stuInfo as $stuInfo)
+                                @php
+                                    $sl = 1;
+                                @endphp
+
+                                @foreach ($stuInfo as $key => $stuInfo)
                                     <tr>
-                                        <td>{{ $stuInfo->id }}</td>
-                                        <td>{{ $stuInfo->name }}</td>
+                                        <td>{{ $sl++ }}</td>
+                                        <td>{{$stuInfo['student']['name']}}</td>
+                                        <td>{{$stuInfo['student']['id_no']}}</td>
+                                        <td>{{$stuInfo['student_class']['class_name']}}</td>
+                                        <td>{{$stuInfo->roll}}</td>
+                                        <td>{{$stuInfo['student_year']['year']}}</td>
+
+
+
+
+
+
+                                        <td><img style="width: 80px" src="{{url('storage/'.$stuInfo['student']['image'])}}" alt=""> </td>
 
                                         <td>
 

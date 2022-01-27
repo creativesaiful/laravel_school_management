@@ -20,7 +20,9 @@ class studentRegController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $stuInfo = User::where('usertype', 'Student')->orderBy('name', 'ASC')->get();
+    {   $stuInfo = assign_student::get();
+
+
         return view('backend.student_reg.view', ['stuInfo'=>$stuInfo]);
     }
 
