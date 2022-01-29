@@ -10,8 +10,12 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Student List</h3>
-                    <a href="{{route('student.create')}}" class="btn btn-success float-right">Regiater New Student</a>
+                    <a href="{{ route('student.create') }}" class="btn btn-success float-right">Regiater New Student</a>
                 </div>
+
+
+
+
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">
@@ -31,7 +35,7 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tbody">
 
                                 @php
                                     $sl = 1;
@@ -40,24 +44,25 @@
                                 @foreach ($stuInfo as $key => $stuInfo)
                                     <tr>
                                         <td>{{ $sl++ }}</td>
-                                        <td>{{$stuInfo['student']['name']}}</td>
-                                        <td>{{$stuInfo['student']['id_no']}}</td>
-                                        <td>{{$stuInfo['student_class']['class_name']}}</td>
-                                        <td>{{$stuInfo->roll}}</td>
-                                        <td>{{$stuInfo['student_year']['year']}}</td>
+                                        <td>{{ $stuInfo['student']['name'] }}</td>
+                                        <td>{{ $stuInfo['student']['id_no'] }}</td>
+                                        <td>{{ $stuInfo['student_class']['class_name'] }}</td>
+                                        <td>{{ $stuInfo->roll }}</td>
+                                        <td>{{ $stuInfo['student_year']['year'] }}</td>
 
 
 
 
 
 
-                                        <td><img style="width: 80px" src="{{url('storage/'.$stuInfo['student']['image'])}}" alt=""> </td>
+                                        <td><img style="width: 80px"
+                                                src="{{ url('storage/' . $stuInfo['student']['image']) }}" alt=""> </td>
 
                                         <td>
 
-                                            <a href="{{ route('shift.edit', $stuInfo->id) }}">Edit</a> ||
+                                            <a href="{{ route('student.edit',$stuInfo->id) }}">Edit</a> ||
 
-                                            <form method="post" action="{{ route('shift.destroy', $stuInfo->id) }}">
+                                            <form method="post" action="{{ route('student.destroy',$stuInfo->id) }}">
 
                                                 @csrf
                                                 @method('DELETE')
@@ -85,6 +90,8 @@
 
 
     </div>
+
+
 
 
 @endsection

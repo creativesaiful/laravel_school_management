@@ -117,3 +117,5 @@ Route::resource('designation', desigController::class);
 
 //Student Registration
 Route::resource('student', studentRegController::class);
+
+

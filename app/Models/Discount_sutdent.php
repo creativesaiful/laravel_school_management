@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Discount_sutdent extends Model
 {
     use HasFactory;
+
+
 }

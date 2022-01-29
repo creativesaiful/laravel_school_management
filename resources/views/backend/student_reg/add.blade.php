@@ -105,6 +105,7 @@
                     <option disabled selected>Select Religion</option>
                     <option value="islam">Islam</option>
                     <option value="hindu">Hindu</option>
+                    <option value="other">Other</option>
 
                 </select>
 

@@ -20,6 +20,18 @@ class assign_student extends Model
 
 
     function student_year(){
-        return $this->belongsTo(Year::class, 'class_id', 'id');
+        return $this->belongsTo(Year::class, 'year_id', 'id');
+    }
+
+    function student_group(){
+        return $this->belongsTo(Group::class, 'group_id', 'id');
+    }
+
+    function student_shift(){
+        return $this->belongsTo(Shift::class, 'shift_id', 'id');
+    }
+
+    function discount_info(){
+        return $this->belongsTo(Discount_sutdent::class, 'id', 'assign_student_id');
     }
 }
