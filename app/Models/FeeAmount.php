@@ -13,4 +13,8 @@ class FeeAmount extends Model
         'fee_amount'
 
     ];
+
+    public function feeamount(){
+        return $this->belongsTo(Feecate::class,'fee_category_id' ,'id');
+    }
 }

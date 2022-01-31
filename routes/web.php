@@ -14,6 +14,8 @@ use App\Http\Controllers\subjectController;
 use App\Http\Controllers\feeAmountController;
 use App\Http\Controllers\desigController;
 use App\Http\Controllers\studentRegController;
+
+use App\Http\Controllers\promotionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -117,5 +119,8 @@ Route::resource('designation', desigController::class);
 
 //Student Registration
 Route::resource('student', studentRegController::class);
+//Student Promotion
 
+Route::get('promotion/{id}', [promotionController::class, 'EditPromotion'] )->name('student.promotion');
 
+Route::post('promote/{student_id}', [promotionController::class, 'PromoteStudent'] )->name('student.promote');

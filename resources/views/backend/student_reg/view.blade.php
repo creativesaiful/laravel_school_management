@@ -60,16 +60,12 @@
 
                                         <td>
 
-                                            <a href="{{ route('student.edit',$stuInfo->id) }}">Edit</a> ||
+                                            <a href="{{ route('student.edit',$stuInfo->id) }}" class="btn btn-warning">Edit</a>
 
-                                            <form method="post" action="{{ route('student.destroy',$stuInfo->id) }}">
 
-                                                @csrf
-                                                @method('DELETE')
+                                                <a href="{{route('student.promotion',$stuInfo->id)}}" class="btn btn-success">Promotion</a>
 
-                                                <input type="submit" value="delete" class="del_data">
 
-                                            </form>
 
 
                                         </td>

@@ -29,7 +29,7 @@
                                 @foreach ($feeInfo as $feeInfo)
                                     <tr>
                                         <td>{{ $feeInfo->id }}</td>
-                                        <td>{{ $feeInfo->fee_category_id }}</td>
+                                        <td>{{ $feeInfo['feeamount']['fee_cata_name'] }}</td>
                                         <td>{{ $feeInfo->fee_amount }}</td>
                                         <td>
 
