@@ -60,10 +60,12 @@
 
                                         <td>
 
-                                            <a href="{{ route('student.edit',$stuInfo->id) }}" class="btn btn-warning">Edit</a>
+                                         <a href="{{ route('student.edit',$stuInfo->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
 
-                                                <a href="{{route('student.promotion',$stuInfo->id)}}" class="btn btn-success">Promotion</a>
+                                         <a href="{{route('student.promotion',$stuInfo->id)}}" class="btn btn-success btn-sm">Promotion</a>
+
+                                         <a target="_blank" href="{{route('student.details.pdf',$stuInfo->student_id)}}" class="btn btn-info btn-sm">Details</a>
 
 
 

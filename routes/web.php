@@ -16,6 +16,8 @@ use App\Http\Controllers\desigController;
 use App\Http\Controllers\studentRegController;
 
 use App\Http\Controllers\promotionController;
+
+use App\Http\Controllers\pdfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,3 +126,5 @@ Route::resource('student', studentRegController::class);
 Route::get('promotion/{id}', [promotionController::class, 'EditPromotion'] )->name('student.promotion');
 
 Route::post('promote/{student_id}', [promotionController::class, 'PromoteStudent'] )->name('student.promote');
+//Pdf generate route
+Route::get('student_details/{stu_id}', [pdfController::class, 'studentDetailsPdf'])->name('student.details.pdf');
