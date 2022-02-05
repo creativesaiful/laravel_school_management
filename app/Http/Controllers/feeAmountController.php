@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AllClass;
 use Illuminate\Http\Request;
 use App\Models\FeeAmount;
 use App\Models\FeeCate;
@@ -16,8 +17,9 @@ class feeAmountController extends Controller
     {
        $feeInfo =  FeeAmount::latest()->get();
        $feeCateInfo = FeeCate::orderBy('fee_cata_name', 'ASC')->get();
+       $allClass = AllClass::orderBy('id','ASC')->get();
 
-       return view('backend.feeamount.view', ['feeInfo'=>$feeInfo, 'feeCateInfo'=>$feeCateInfo]);
+       return view('backend.feeamount.view', ['feeInfo'=>$feeInfo, 'feeCateInfo'=>$feeCateInfo, 'allClass'=>$allClass]);
     }
 
     /**
@@ -40,13 +42,16 @@ class feeAmountController extends Controller
     {
         $request->validate([
             'fee_amount'=>'required',
-            'fee_category_id'=>'required'
+            'fee_category_id'=>'required',
+            'class_id'=>'required'
 
         ]);
 
         FeeAmount::insert([
             'fee_category_id'=>$request->fee_category_id,
             'fee_amount'=>$request->fee_amount,
+            'class_id'=>$request->class_id
+
 
         ]);
         $notification = [
@@ -78,8 +83,9 @@ class feeAmountController extends Controller
     {
        $feeAmountInfo =  FeeAmount::find($id);
        $feeCateInfo = FeeCate::orderBy('fee_cata_name', 'ASC')->get();
+       $allClass = AllClass::orderBy('id','ASC')->get();
 
-       return view('backend.feeamount.edit', ['feeAmountInfo'=>$feeAmountInfo, 'feeCateInfo'=>$feeCateInfo]);
+       return view('backend.feeamount.edit', ['feeAmountInfo'=>$feeAmountInfo, 'feeCateInfo'=>$feeCateInfo, 'allClass'=>$allClass]);
     }
 
     /**
@@ -94,6 +100,7 @@ class feeAmountController extends Controller
         $request->validate([
             'fee_category_id'=>'required',
             'fee_amount'=>'required',
+            'class_id'=>'required'
 
 
         ]);
@@ -102,6 +109,7 @@ class feeAmountController extends Controller
 
             'fee_amount'=>$request->fee_amount,
             'fee_category_id'=>$request->fee_category_id,
+            'class_id'=>$request->class_id
 
         ]);
         $notification = [

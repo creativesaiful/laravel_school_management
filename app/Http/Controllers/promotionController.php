@@ -30,6 +30,7 @@ class promotionController extends Controller
         $stu_asign->year_id = $request->year_id;
         $stu_asign->group_id = $request->group_id;
         $stu_asign->shift_id = $request->shift_id;
+        $stu_asign->roll = $request->roll;
 
         $stu_asign->save();
 

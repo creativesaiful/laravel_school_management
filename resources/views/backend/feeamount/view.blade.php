@@ -19,6 +19,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Fee Category Id</th>
+                                    <th>Fee Class</th>
                                     <th>Fees Amount</th>
                                     <th>Action</th>
 
@@ -30,6 +31,7 @@
                                     <tr>
                                         <td>{{ $feeInfo->id }}</td>
                                         <td>{{ $feeInfo['feeamount']['fee_cata_name'] }}</td>
+                                        <td>{{ $feeInfo['classId']['class_name'] }}</td>
                                         <td>{{ $feeInfo->fee_amount }}</td>
                                         <td>
 
@@ -64,7 +66,7 @@
         <div class="col-md-4">
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Add New Fees Category</h4>
+                    <h4 class="box-title">Add New Fees Amount</h4>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -88,6 +90,26 @@
 
 
                             @error('fee_category_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fees For Class</label>
+
+                            <select name="class_id" id="" class="form-control">
+                                <option selected disabled>Select</option>
+
+
+                                @foreach ($allClass as $allClass)
+                                    <option value="{{ $allClass->id }}">{{ $allClass->class_name }}</option>
+                                @endforeach
+
+
+                            </select>
+
+
+                            @error('class_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

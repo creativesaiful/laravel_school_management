@@ -36,6 +36,26 @@
                         </div>
                         <!-- text input -->
 
+                        <div class="form-group">
+                            <label>Fees For Class</label>
+
+                            <select name="class_id" id="" class="form-control">
+
+
+
+                                @foreach ($allClass as $allClass)
+                                    <option value="{{ $allClass->id }}" {{$allClass->id == $feeAmountInfo->class_id ? 'setected' : ''}} >{{ $allClass->class_name }}</option>
+                                @endforeach
+
+
+                            </select>
+
+
+                            @error('class_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
 
 
 

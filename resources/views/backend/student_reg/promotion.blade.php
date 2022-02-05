@@ -24,6 +24,35 @@
     {{-- Third Row End --}}
 
     <div class="row">
+       <div class="col-md-4">
+           <img width="100px" height="100px" src="{{url('storage/'.$stuInfo['student']['image'])}}" alt="">
+       </div>
+    </div>
+<br>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Student Name </label>
+                <h4 class="text-light">{{$stuInfo['student']['name']}}</h4>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Father's Name </label>
+                <h4 class="text-light">{{$stuInfo['student']['fname']}}</h4>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Mother's Name </label>
+                <h4 class="text-light">{{$stuInfo['student']['mname']}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <label>Year <span class="text-danger">*</span> </label>
@@ -68,7 +97,7 @@
 
 
                 <select name="group_id" id="" class="form-control">
-                    <option selected>Select group</option>
+                    <option disabled >Select group</option>
 
                     @foreach ($group as $group)
                     <option value="{{ $group->id }}" {{ @$stuInfo['student_group']['id'] == $group->id  ? "selected" :'' }}>{{ $group->group_name }}</option>
@@ -106,6 +135,24 @@
 
         <div class="col-md-4">
             <div class="form-group">
+                <label>Roll<span class="text-danger">*</span> </label>
+
+
+
+
+
+                    <input type="number" class="form-control" name="roll" value="{{$stuInfo->roll}}">
+
+
+
+                @error('shift_id')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
 
                 <input type="hidden" name='id' value="{{$stuInfo->id}}">
                 <label>Discount <span class="text-danger">*</span> </label>
@@ -126,7 +173,7 @@
 
     <div class="form-group">
 
-        <input type="submit" class="btn btn-success ml-3" value='Add Student'>
+        <input type="submit" class="btn btn-success" value='Promote Student'>
     </div>
 
 </form>

@@ -78,6 +78,13 @@
 
         <tr>
 
+            <td>Class</td>
+            <td>{{$details->role}}</td>
+
+        </tr>
+
+        <tr>
+
             <td>Group</td>
             <td>{{$details['student_group']['group_name']}}</td>
 
