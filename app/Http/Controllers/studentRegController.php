@@ -175,7 +175,7 @@ class studentRegController extends Controller
         if($request->file('img')){
           $user =   User::where('id', $stu_id)->first();
 
-          @unlink(public_path($user->image));
+          @unlink(public_path('storage/'.$user->image));
         $imgPath = $request->file('img');
 
         $imgName = 'student-photos/'. hexdec(rand()).'.'.$imgPath->getClientOriginalExtension();

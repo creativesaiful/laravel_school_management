@@ -13,11 +13,15 @@ use App\Http\Controllers\feecataController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\feeAmountController;
 use App\Http\Controllers\desigController;
+use App\Http\Controllers\employeeRegController;
 use App\Http\Controllers\studentRegController;
 
 use App\Http\Controllers\promotionController;
 
 use App\Http\Controllers\pdfController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -128,3 +132,17 @@ Route::get('promotion/{id}', [promotionController::class, 'EditPromotion'] )->na
 Route::post('promote/{student_id}', [promotionController::class, 'PromoteStudent'] )->name('student.promote');
 //Pdf generate route
 Route::get('student_details/{stu_id}', [pdfController::class, 'studentDetailsPdf'])->name('student.details.pdf');
+
+
+//Employee Management Routes
+
+Route::prefix('employee')->group(function(){
+    Route::get('view', [employeeRegController::class, 'employeeView'])->name('view.employee');
+    Route::get('add', [employeeRegController::class, 'employeeAdd'])->name('add.employee');
+    Route::post('store', [employeeRegController::class, 'employeeStore'])->name('store.employee');
+
+    Route::get('edit/{id}', [employeeRegController::class, 'employeeEdit'])->name('edit.employee');
+
+    Route::post('update/{id}', [employeeRegController::class, 'employeeUpdate'])->name('update.employee');
+    Route::get('employee_details/{id}', [employeeRegController::class, 'EmployeeDetailsPdf'])->name('employee.details.pdf');
+});
