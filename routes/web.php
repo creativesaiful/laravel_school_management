@@ -19,8 +19,7 @@ use App\Http\Controllers\studentRegController;
 use App\Http\Controllers\promotionController;
 
 use App\Http\Controllers\pdfController;
-
-
+use App\Http\Controllers\salaryIncrementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,4 +144,16 @@ Route::prefix('employee')->group(function(){
 
     Route::post('update/{id}', [employeeRegController::class, 'employeeUpdate'])->name('update.employee');
     Route::get('employee_details/{id}', [employeeRegController::class, 'EmployeeDetailsPdf'])->name('employee.details.pdf');
+
+    //Salary Routes
+
+    Route::get('salary', [salaryIncrementController::class, 'salaryView'])->name('employee.salary.view');
+
+    Route::get('salary/increment/{id}', [salaryIncrementController::class, 'salaryIncrement'])->name('employee.salary.increment');
+
+    Route::post('salary/update/{id}', [salaryIncrementController::class, 'salaryIncrementStore'])->name('update.salary');
+
+    Route::get('salary/details/{id}', [salaryIncrementController::class, 'salaryIncrementHistory'])->name('salary.details');
 });
+
+

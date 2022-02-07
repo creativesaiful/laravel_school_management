@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 
-@section('title', 'Employee list')
+@section('title', 'Salary View')
 @section('content')
 
 
@@ -9,8 +9,8 @@
         <div class="col-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Employee List</h3>
-                    <a href="{{ route('add.employee') }}" class="btn btn-success float-right">Add New Employee</a>
+                    <h3 class="box-title">Salary List</h3>
+
                 </div>
 
 
@@ -28,9 +28,9 @@
                                     <th>ID No</th>
                                     <th>Mobile</th>
 
-                                    <th>Email</th>
+
                                     <th>Gender</th>
-                                    <th>Join Date</th>
+
                                     <th>Salary</th>
                                     <th>Action</th>
 
@@ -42,7 +42,7 @@
                                     $sl = 1;
                                 @endphp
 
-                                @foreach ($employee as $key => $emplyInfo)
+                                @foreach ($allEmployee as $key => $emplyInfo)
                                     <tr>
                                         <td>{{ $sl++ }}</td>
                                         <td>{{ $emplyInfo->name }}</td>
@@ -50,17 +50,18 @@
                                         <td>{{ $emplyInfo['designation']['name'] }}</td>
                                         <td>{{ $emplyInfo->id_no }}</td>
                                         <td>{{ $emplyInfo->phone }}</td>
-                                        <td>{{ $emplyInfo->email }}</td>
-                                        <td>{{ ucwords($emplyInfo->gender) }}</td>
-                                        <td>{{ $emplyInfo->join_date}}</td>
+
+                                        <td>{{ucwords( $emplyInfo->gender)}}</td>
+
                                         <td>{{ $emplyInfo->salary}}</td>
 
 
                                         <td>
-                                         <a href="{{ route('edit.employee',$emplyInfo->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                         <a href="{{ route('employee.salary.increment',$emplyInfo->id) }}" class="btn btn-warning " title="Increment">
+                                            <i class="fa fa-plus-circle"></i> </a>
 
 
-                                         <a target="_blank" href="{{route('employee.details.pdf',$emplyInfo->id)}}" class="btn btn-info btn-sm">Details</a>
+                                         <a href="{{route('salary.details',$emplyInfo->id)}}" class="btn btn-info " title="view"><i class="fa fa-eye-slash"></i></a>
 
 
 

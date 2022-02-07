@@ -159,6 +159,10 @@
                             href="{{ route('view.employee') }}"><i class="ti-more"></i>Employee List</a>
                     </li>
 
+                    <li class="{{ Route::currentRouteName() == 'employee.salary.view' ? 'active' : '' }}"><a
+                        href="{{ route('employee.salary.view') }}"><i class="ti-more"></i>Employee Salary</a>
+                </li>
+
 
 
 
