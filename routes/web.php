@@ -21,6 +21,8 @@ use App\Http\Controllers\promotionController;
 use App\Http\Controllers\pdfController;
 use App\Http\Controllers\salaryIncrementController;
 
+use App\Http\Controllers\employeeLeveController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -154,6 +156,23 @@ Route::prefix('employee')->group(function(){
     Route::post('salary/update/{id}', [salaryIncrementController::class, 'salaryIncrementStore'])->name('update.salary');
 
     Route::get('salary/details/{id}', [salaryIncrementController::class, 'salaryIncrementHistory'])->name('salary.details');
+
+    //Leave Routes
+
+    Route::get('leave', [employeeLeveController::class, 'EmployeeleaveView'])->name('employee.leave.view');
+
+    Route::get('leave/add', [employeeLeveController::class, 'EmployeeleaveAdd'])->name('employee.leave.add');
+
+    Route::post('leave/store', [employeeLeveController::class, 'EmployeeleaveStore'])->name('employee.leave.store');
+
+    Route::get('leave/edit/{id}', [employeeLeveController::class, 'EmployeeleaveEdit'])->name('employee.leave.edit');
+
+    Route::get('leave/edit/{id}', [employeeLeveController::class, 'EmployeeleaveEdit'])->name('employee.leave.edit');
+
+
+    Route::post('leave/update/{id}', [employeeLeveController::class, 'EmployeeleaveUpdate'])->name('employee.leave.update');
+
+    Route::get('leave/delete/{id}', [employeeLeveController::class, 'EmployeeleaveDelete'])->name('employee.leave.delete');
 });
 
 
