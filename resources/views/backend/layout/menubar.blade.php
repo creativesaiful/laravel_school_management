@@ -167,6 +167,10 @@
                     href="{{ route('employee.leave.view') }}"><i class="ti-more"></i>Employee Leave</a>
             </li>
 
+            <li class="{{ Route::currentRouteName() == 'employee.attendence.view' ? 'active' : '' }}"><a
+                href="{{ route('employee.attendence.view') }}"><i class="ti-more"></i>Employee Attendence</a>
+        </li>
+
 
 
 

@@ -23,6 +23,8 @@ use App\Http\Controllers\salaryIncrementController;
 
 use App\Http\Controllers\employeeLeveController;
 
+use App\Http\Controllers\employeeAttendenceController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -173,6 +175,24 @@ Route::prefix('employee')->group(function(){
     Route::post('leave/update/{id}', [employeeLeveController::class, 'EmployeeleaveUpdate'])->name('employee.leave.update');
 
     Route::get('leave/delete/{id}', [employeeLeveController::class, 'EmployeeleaveDelete'])->name('employee.leave.delete');
+
+    //Employee attendence
+
+    Route::get('attendence', [employeeAttendenceController::class, 'EmployeeAttendenceView'])->name('employee.attendence.view');
+
+    Route::get('attendence/add', [employeeAttendenceController::class, 'EmployeeAttendenceAdd'])->name('employee.attendence.add');
+
+    Route::get('attendence/details/{date}', [employeeAttendenceController::class, 'EmployeeAttendenceDetails'])->name('employee.attendence.details');
+
+    Route::post('attendence/store', [employeeAttendenceController::class, 'EmployeeAttendenceStore'])->name('employee.attendence.store');
+
+    Route::get('attendence/edit/{date}', [employeeAttendenceController::class, 'EmployeeAttendenceEdit'])->name('employee.attendence.edit');
+
+    Route::post('attendence/update/{date}', [employeeAttendenceController::class, 'EmployeeAttendenceUpdate'])->name('employee.attendence.update');
+
+
+
+
 });
 
 
