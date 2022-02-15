@@ -25,6 +25,8 @@ use App\Http\Controllers\employeeLeveController;
 
 use App\Http\Controllers\employeeAttendenceController;
 
+use App\Http\Controllers\MarksController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -195,4 +197,14 @@ Route::prefix('employee')->group(function(){
 
 });
 
+
+//Marks Related Routes
+
+Route::prefix('marks')->group(function(){
+    route::get('entry', [MarksController::class, 'MarksEntryView'])->name('marks.entry');
+});
+
+//Marks related Jquery
+
+Route::get('mark/search', [MarksController::class, 'MarksSearch'] );
 

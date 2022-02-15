@@ -62,7 +62,7 @@
                     <td>{{$employee['UserData']['name']}}</td>
                     <td colspan="3">
 
-                        <input type="text" name="employee_id[]" value="{{$employee->id}}">
+                        <input type="hidden" name="employee_id[]" value="{{$employee->employee_id}}">
                      <div class="switch-toggle switch-3 switch-candy">
                          <input name="attend_status{{$key}}" type="radio" id="present{{$key}}" {{$employee->attend_status=='Present' ? 'checked' : ''}} value="Present" checked />
                          <label for="present{{$key}}">Present</label>

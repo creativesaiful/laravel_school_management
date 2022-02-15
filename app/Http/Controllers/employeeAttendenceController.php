@@ -17,7 +17,8 @@ class employeeAttendenceController extends Controller
 
 
     public function EmployeeAttendenceDetails($date){
-        $data['attendenceInfo'] = employeeAttendence::where('date', $date)->orderBy('date', 'DESC')->get();
+        $data['attendenceInfo'] = employeeAttendence::with(['UserData'])->where('date', $date)->orderBy('date', 'DESC')->get();
+
         return view('backend.employee.attendence.attendence_details', $data);
     }
 

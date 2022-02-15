@@ -38,7 +38,7 @@
                 </a>
 
                 @php
-                    $name = Route::currentRouteName();
+                $name = Route::currentRouteName();
 
                 @endphp
                 <ul class="treeview-menu">
@@ -134,8 +134,8 @@
                     </li>
 
                     <li class="{{ Route::currentRouteName() == 'student.create' ? 'active' : '' }}"><a
-                        href="{{ route('student.create') }}"><i class="ti-more"></i>Student Registration</a>
-                </li>
+                            href="{{ route('student.create') }}"><i class="ti-more"></i>Student Registration</a>
+                    </li>
 
 
 
@@ -160,16 +160,45 @@
                     </li>
 
                     <li class="{{ Route::currentRouteName() == 'employee.salary.view' ? 'active' : '' }}"><a
-                        href="{{ route('employee.salary.view') }}"><i class="ti-more"></i>Employee Salary</a>
-                </li>
+                            href="{{ route('employee.salary.view') }}"><i class="ti-more"></i>Employee Salary</a>
+                    </li>
 
-                <li class="{{ Route::currentRouteName() == 'employee.leave.view' ? 'active' : '' }}"><a
-                    href="{{ route('employee.leave.view') }}"><i class="ti-more"></i>Employee Leave</a>
+                    <li class="{{ Route::currentRouteName() == 'employee.leave.view' ? 'active' : '' }}"><a
+                            href="{{ route('employee.leave.view') }}"><i class="ti-more"></i>Employee Leave</a>
+                    </li>
+
+                    <li class="{{ Route::currentRouteName() == 'employee.attendence.view' ? 'active' : '' }}"><a
+                            href="{{ route('employee.attendence.view') }}"><i class="ti-more"></i>Employee
+                            Attendence</a>
+                    </li>
+
+
+
+
+
+                </ul>
+
+
+
+
             </li>
 
-            <li class="{{ Route::currentRouteName() == 'employee.attendence.view' ? 'active' : '' }}"><a
-                href="{{ route('employee.attendence.view') }}"><i class="ti-more"></i>Employee Attendence</a>
-        </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="book"></i>
+                    <span>Marks Managment</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ Route::currentRouteName() == 'marks.entry' ? 'active' : '' }}"><a
+                            href="{{ route('marks.entry') }}"><i class="ti-more"></i>Marks Entry</a>
+                    </li>
+
+
 
 
 
@@ -191,13 +220,13 @@
 
     <div class="sidebar-footer">
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
-            data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
+            aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
         <!-- item-->
-        <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title=""
-            data-original-title="Email"><i class="ti-email"></i></a>
+        <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
+                class="ti-email"></i></a>
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
-            data-original-title="Logout"><i class="ti-lock"></i></a>
+        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
+                class="ti-lock"></i></a>
     </div>
 </aside>
