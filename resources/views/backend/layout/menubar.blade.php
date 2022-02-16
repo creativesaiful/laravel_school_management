@@ -198,6 +198,10 @@
                             href="{{ route('marks.entry') }}"><i class="ti-more"></i>Marks Entry</a>
                     </li>
 
+                 <li class="{{ Route::currentRouteName() == 'marks.edit' ? 'active' : '' }}"><a
+                        href="{{ route('marks.edit') }}"><i class="ti-more"></i>Marks Edit</a>
+                </li>
+
 
 
 

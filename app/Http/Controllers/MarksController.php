@@ -7,20 +7,34 @@ use App\Models\Year;
 use App\Models\Shift;
 use App\Models\AllClass;
 use App\Models\assign_student;
+use App\Models\Exam;
 use App\Models\Group;
+use App\Models\StudentMarks;
 use App\Models\Subject;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class MarksController extends Controller
 {
     public function MarksEntryView(){
-        // $data['year'] = Year::orderBy('year', 'DESC')->get();
+
         // $data['shift'] = Shift::orderBy('shift_name', 'ASC')->get();
-        // $data['allclass'] = AllClass::orderBy('class_name', 'ASC')->get();
-        // $data['group'] = Group::orderBy('group_name', 'ASC')->get();
+
+
+
+        $data['year'] = assign_student::select('year_id')->groupBy('year_id')->orderBy('year_id', 'DESC')->get();
+        $data['allclass'] = assign_student::select('class_id')->groupBy('class_id')->orderBy('class_id', 'DESC')->get();
+
+        $data['group'] = assign_student::select('group_id')->groupBy('group_id')->orderBy('group_id', 'DESC')->get();
+
+        $data['shift'] = assign_student::select('shift_id')->groupBy('shift_id')->orderBy('shift_id', 'DESC')->get();
+
 
         $data['subject'] = Subject::orderBy('subject', 'ASC')->get();
 
-        $data ['stuInfo'] = assign_student::with(['student_class', 'student_year', 'student_group', 'student_shift'])->get();
+        $data['exam'] = Exam::orderBy('exam_name', 'ASC')->get();
+
+        //$data ['stuInfo'] = assign_student::with(['student_class', 'student_year', 'student_group', 'student_shift'])->get();
 
 
 
@@ -29,9 +43,78 @@ class MarksController extends Controller
 
     public function MarksSearch(Request $request){
 
-           $allStu =  assign_student::where('year_id', $request->yearId)->where('class_id',  $request->classId)->where('group_id',  $request->groupId)->where('shift_id',  $request->shiftId)->get();
 
 
-      return response()->json($allStu);
-    }
+        $allStu =  DB::table('assign_students')
+        ->join('users', 'assign_students.student_id', '=', 'users.id')
+        ->where('assign_students.class_id', $request->classId)
+        ->where('assign_students.year_id', $request->yearId)
+        ->where('assign_students.group_id', $request->gorupId)
+        ->where('assign_students.shift_id', $request->shiftId)
+        ->get();
+
+
+
+
+           if($allStu ){
+            return response()->json($allStu);
+           }else{
+            return response()->json('Sorry');
+           }
+
+    }//End Marksearch
+
+    public function MarksStore(Request $request){
+
+        $validated = $request->validate([
+            'subject_id' => 'required',
+            'exam_id' => 'required',
+        ]);
+
+        $stuCount = $request->student_id;
+
+        for ($i=0; $i <count($request->student_id) ; $i++) {
+
+            $data = new StudentMarks();
+            $data->year_id = $request->year_id;
+            $data->class_id = $request->class_id;
+            $data->assign_subject_id = $request->subject_id;
+            $data->exam_id = $request->exam_id;
+            $data->id_no = $request->id_no[$i];
+            $data->student_id = $request->student_id[$i];
+            $data->marks = $request->marks[$i];
+
+            $data->save();
+
+
+        }
+
+        $notification = [
+            'type'=>'success',
+            'message'=>'Marks Added successfully'
+        ];
+
+        return back()->with($notification);
+
+    }//End Method
+
+
+    public function MarksEdit(){
+
+
+        $data['year'] = assign_student::select('year_id')->groupBy('year_id')->orderBy('year_id', 'DESC')->get();
+        $data['allclass'] = assign_student::select('class_id')->groupBy('class_id')->orderBy('class_id', 'DESC')->get();
+
+
+
+        $data['subject'] = Subject::orderBy('subject', 'ASC')->get();
+
+        $data['exam'] = Exam::orderBy('exam_name', 'ASC')->get();
+
+        //$data ['stuInfo'] = assign_student::with(['student_class', 'student_year', 'student_group', 'student_shift'])->get();
+
+
+
+        return view('backend.marks.marks_edit', $data);
+    }//End Method
 }

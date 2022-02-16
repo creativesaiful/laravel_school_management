@@ -206,5 +206,12 @@ Route::prefix('marks')->group(function(){
 
 //Marks related Jquery
 
-Route::get('mark/search', [MarksController::class, 'MarksSearch'] );
+Route::prefix('mark')->group(function(){
+    Route::get('/search', [MarksController::class, 'MarksSearch'] );
+    Route::post('/store', [MarksController::class, 'MarksStore'] )->name('marks.store');
+    Route::get('/edit', [MarksController::class, 'MarksEdit'] )->name('marks.edit');
+});
+
+
+
 

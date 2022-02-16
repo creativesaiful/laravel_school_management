@@ -50,43 +50,48 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                <label>Group <span class="text-danger">*</span> </label>
+                <label>Subject <span class="text-danger">*</span> </label>
 
 
-                <select name="group_id" id="group_id" class="form-control">
-                    <option selected disabled>Select group</option>
+                <select name="subject_id" id="subject_id" class="form-control" required>
+                    <option selected disabled>Select Subject</option>
 
-                    @foreach ($group as $group)
-                    <option value="{{ $group->group_id }}">{{ $group['student_group']['group_name'] }}</option>
+                    @foreach ($subject as $subject)
+                    <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
                     @endforeach
                 </select>
 
 
-                @error('group_id')
+                @error('subject_id')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
         </div>
+
 
         <div class="col-md-2">
             <div class="form-group">
-                <label>Shift <span class="text-danger">*</span> </label>
+                <label>Exam <span class="text-danger">*</span> </label>
 
 
-                <select name="shift_id" id="shift_id" class="form-control">
-                    <option selected disabled>Select Shift</option>
+                <select name="exam_id" id="exam_id" class="form-control" required>
+                    <option selected disabled>Select Exam</option>
 
-                    @foreach ($shift as $shift)
-                    <option value="{{ $shift->shift_id }}">{{ $shift['student_shift']['shift_name'] }}</option>
+                    @foreach ($exam as $exam)
+                    <option value="{{ $exam->id }}">{{ $exam->exam_name }}</option>
                     @endforeach
                 </select>
 
 
-                @error('shift_id')
+                @error('exam_id')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
         </div>
+
+
+
+
 
 
 
@@ -111,46 +116,7 @@
 
     <hr>
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Subject <span class="text-danger">*</span> </label>
 
-
-                <select name="subject_id" id="subject_id" class="form-control" required>
-                    <option selected disabled>Select Subject</option>
-
-                    @foreach ($subject as $subject)
-                    <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
-                    @endforeach
-                </select>
-
-
-                @error('subject_id')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Exam <span class="text-danger">*</span> </label>
-
-
-                <select name="exam_id" id="exam_id" class="form-control" required>
-                    <option selected disabled>Select Exam</option>
-
-                    @foreach ($exam as $exam)
-                    <option value="{{ $exam->id }}">{{ $exam->exam_name }}</option>
-                    @endforeach
-                </select>
-
-
-                @error('exam_id')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
 
     </div>
 
