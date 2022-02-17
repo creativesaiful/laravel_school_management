@@ -27,6 +27,8 @@ use App\Http\Controllers\employeeAttendenceController;
 
 use App\Http\Controllers\MarksController;
 
+use App\Http\Controllers\GradeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -210,8 +212,27 @@ Route::prefix('mark')->group(function(){
     Route::get('/search', [MarksController::class, 'MarksSearch'] );
     Route::post('/store', [MarksController::class, 'MarksStore'] )->name('marks.store');
     Route::get('/edit', [MarksController::class, 'MarksEdit'] )->name('marks.edit');
+
+    Route::get('/edit/search', [MarksController::class, 'MarksSearchForEdit'] )->name('marks.edit.search');
+
+    Route::post('/update', [MarksController::class, 'MarksUpdateStore'])->name('marks.update');
+
+
 });
 
+    //Greade system Route
 
+    Route::prefix('grade')->group(function(){
+        route::get('/view', [GradeController::class, 'GradeView'])->name('grade.view');
+        route::get('/add', [GradeController::class, 'GradeAdd'])->name('grade.add');
+        route::post('/store', [GradeController::class, 'GradeStore'])->name('grade.store');
+
+        route::get('/edit/{id}', [GradeController::class, 'GradeEdit'])->name('grade.edit');
+
+        route::post('/update/{id}', [GradeController::class, 'GradeUpdate'])->name('grade.update');
+
+        route::get('/delete/{id}', [GradeController::class, 'GradeDelete'])->name('grade.delete');
+
+    });
 
 

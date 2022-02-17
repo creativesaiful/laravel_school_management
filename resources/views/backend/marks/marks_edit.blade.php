@@ -1,13 +1,13 @@
 @extends('backend.layout.master')
 
-@section('title', 'Marks Entry')
+@section('title', 'Marks Edit')
 @section('content')
 
 <div class="">
-    <h4 class="box-title">Marks Entry</h4>
+    <h4 class="box-title">Marks Edit</h4>
 </div>
 
-<form action="{{route("marks.store")}}" method="post">
+<form action="{{route('marks.update')}}" method="post">
     @csrf
     <div class="row">
         <div class="col-md-3">
@@ -18,7 +18,7 @@
                     <option disabled selected>Select Year</option>
 
                     @foreach ($year as $year)
-                    <option value="{{ $year->year_id }}">{{ $year['student_year']['year'] }}</option>
+                    <option value="{{ $year->year_id }}">{{ $year['yearInfo']['year'] }}</option>
                     @endforeach
                 </select>
 
@@ -37,7 +37,7 @@
                     <option disabled selected>Select Class</option>
 
                     @foreach ($allclass as $allclass)
-                    <option value="{{ $allclass->class_id }}">{{ $allclass['student_class']['class_name'] }}</option>
+                    <option value="{{ $allclass->class_id }}">{{ $allclass['classInfo']['class_name'] }}</option>
                     @endforeach
                 </select>
 
@@ -57,7 +57,7 @@
                     <option selected disabled>Select Subject</option>
 
                     @foreach ($subject as $subject)
-                    <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
+                    <option value="{{ $subject->assign_subject_id }}">{{ $subject['subjectInfo']['subject'] }}</option>
                     @endforeach
                 </select>
 
@@ -78,7 +78,7 @@
                     <option selected disabled>Select Exam</option>
 
                     @foreach ($exam as $exam)
-                    <option value="{{ $exam->id }}">{{ $exam->exam_name }}</option>
+                    <option value="{{ $exam->exam_id }}">{{ $exam['examInfo']['exam_name'] }}</option>
                     @endforeach
                 </select>
 
@@ -123,12 +123,13 @@
     <hr>
 
 
-<h2>Student List</h2>
+    <h2>Student List</h2>
 
     <div class="table-responsive">
         <table id="" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Sl</th>
                     <th>Id No</th>
                     <th>Roll No</th>
                     <th>Name</th>
@@ -148,7 +149,7 @@
 
         </table>
 
-        <input type="submit" value="Submit" id="add_mark" class="btn btn-primary d-none">
+        <input type="submit" value="Update" id="add_mark" class="btn btn-primary d-none">
     </div>
 
 </form>
@@ -161,19 +162,18 @@
 
         var yearId = $('#year_id').val();
         var classId = $('#class_id').val();
-        var gorupId = $('#group_id').val();
-        var shiftId = $('#shift_id').val();
+        var examId = $('#exam_id').val();
         var subjectId = $('#subject_id').val();
 
     $.ajax({
        method: 'get',
-           url: "{{ url('mark/search') }}",
+           url: "{{ url('mark/edit/search') }}",
            dataType: 'json',
            data: {
                yearId: yearId,
-            classId: classId,
-               gorupId:gorupId,
-               shiftId:shiftId
+                 classId: classId,
+               examId:examId,
+               subjectId:subjectId
                },
 
             success: function(data){
@@ -186,16 +186,17 @@
                 $.each(data, function (i, item) {
 
                         $('<tr>').html(
-                            "<td> " + data[i].id_no + "</td>" +
-                            "<td>" + data[i].roll + "</td>" +
-                            "<td>  " + data[i].name + " </td>" +
-                            "<td>  " + data[i].fname + " </td>" +
-                            "<td>  " + data[i].mname + " </td>" +
+                            "<td> " + (i+1) + "</td>" +
+                            "<td> " + item.student_info.id_no + "</td>" +
+                            "<td> "+item.assignstu.roll +" </td>" +
+                            "<td>  " + item.student_info.name + " </td>" +
+                            "<td>  " + item.student_info.fname+ " </td>" +
+                            "<td>  " + item.student_info.mname + " </td>" +
                             "<td> "+
 
-                    "<input type='number' name='marks[]' required>"+
-                    "<input type='hidden' name='student_id[]' value='"+data[i].student_id+"'>"+
-                    "<input type='hidden' name='id_no[]' value='"+data[i].id_no+"'>"+
+                    "<input type='number' name='marks[]' value='"+item.marks+"' required>"+
+                    "<input type='hidden' name='student_id[]' value='"+item.student_id+"'>"+
+                    "<input type='hidden' name='id_no[]' value='"+item.student_info.id_no +"'>"+
 
                              "</td>"
                         ).appendTo('#tbody');
@@ -204,7 +205,7 @@
                         $("#add_mark").removeClass('d-none');
 
              }else{
-                 alert ("Please select year,class, group and shift");
+                 alert ("Please select year,class, subject and exam");
              }
           }
 
@@ -217,5 +218,3 @@
 
 
 @endsection
-
-

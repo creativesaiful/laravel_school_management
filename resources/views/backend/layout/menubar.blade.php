@@ -202,6 +202,10 @@
                         href="{{ route('marks.edit') }}"><i class="ti-more"></i>Marks Edit</a>
                 </li>
 
+                <li class="{{ Route::currentRouteName() == 'grade.view' ? 'active' : '' }}"><a
+                    href="{{ route('grade.view') }}"><i class="ti-more"></i>Grade System</a>
+            </li>
+
 
 
 

@@ -163,6 +163,7 @@
         <table id="" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Sl</th>
                     <th>Id No</th>
                     <th>Roll No</th>
                     <th>Name</th>
@@ -220,11 +221,12 @@
                 $.each(data, function (i, item) {
 
                         $('<tr>').html(
-                            "<td> " + data[i].id_no + "</td>" +
-                            "<td>" + data[i].roll + "</td>" +
-                            "<td>  " + data[i].name + " </td>" +
-                            "<td>  " + data[i].fname + " </td>" +
-                            "<td>  " + data[i].mname + " </td>" +
+                            "<td> " + (i+1) + "</td>" +
+                            "<td> " + item.id_no + "</td>" +
+                            "<td>" + item.roll + "</td>" +
+                            "<td>  " + item.name + " </td>" +
+                            "<td>  " + item.fname + " </td>" +
+                            "<td>  " + item.mname + " </td>" +
                             "<td> "+
 
                     "<input type='number' name='marks[]' required>"+
