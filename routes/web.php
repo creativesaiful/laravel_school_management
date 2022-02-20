@@ -28,6 +28,7 @@ use App\Http\Controllers\employeeAttendenceController;
 use App\Http\Controllers\MarksController;
 
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\StudentFeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -234,5 +235,16 @@ Route::prefix('mark')->group(function(){
         route::get('/delete/{id}', [GradeController::class, 'GradeDelete'])->name('grade.delete');
 
     });
+
+
+    //Account Management route for fee
+
+Route::prefix('stufees')->group(function(){
+    route::get('view', [StudentFeeController::class, 'FeesView'])->name('student.fees.view');
+    route::get('add', [StudentFeeController::class, 'FeesAdd'])->name('student.fees.add');
+
+    //Fee search Ajax
+    route::get('/search', [StudentFeeController::class, 'FeesSearch']);
+});
 
 

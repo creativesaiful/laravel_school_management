@@ -34,4 +34,6 @@ class assign_student extends Model
     function discount_info(){
         return $this->belongsTo(Discount_sutdent::class, 'id', 'assign_student_id');
     }
+
+
 }

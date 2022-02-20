@@ -198,13 +198,44 @@
                             href="{{ route('marks.entry') }}"><i class="ti-more"></i>Marks Entry</a>
                     </li>
 
-                 <li class="{{ Route::currentRouteName() == 'marks.edit' ? 'active' : '' }}"><a
-                        href="{{ route('marks.edit') }}"><i class="ti-more"></i>Marks Edit</a>
-                </li>
+                    <li class="{{ Route::currentRouteName() == 'marks.edit' ? 'active' : '' }}"><a
+                            href="{{ route('marks.edit') }}"><i class="ti-more"></i>Marks Edit</a>
+                    </li>
 
-                <li class="{{ Route::currentRouteName() == 'grade.view' ? 'active' : '' }}"><a
-                    href="{{ route('grade.view') }}"><i class="ti-more"></i>Grade System</a>
+                    <li class="{{ Route::currentRouteName() == 'grade.view' ? 'active' : '' }}"><a
+                            href="{{ route('grade.view') }}"><i class="ti-more"></i>Grade System</a>
+                    </li>
+
+
+
+
+
+
+
+                </ul>
+
+
+
+
             </li>
+             {{-- End Marks Management --}}
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="book"></i>
+                    <span>Accounts Managment</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ Route::currentRouteName() == 'student.fees.view' ? 'active' : '' }}"><a
+                            href="{{ route('student.fees.view') }}"><i class="ti-more"></i>Student Fee</a>
+                    </li>
+
+
 
 
 
