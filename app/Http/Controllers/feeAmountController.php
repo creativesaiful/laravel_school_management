@@ -15,7 +15,7 @@ class feeAmountController extends Controller
      */
     public function index()
     {
-       $feeInfo =  FeeAmount::latest()->get();
+       $feeInfo =  FeeAmount::with('feeCate')->latest()->get();
        $feeCateInfo = FeeCate::orderBy('fee_cata_name', 'ASC')->get();
        $allClass = AllClass::orderBy('id','ASC')->get();
 

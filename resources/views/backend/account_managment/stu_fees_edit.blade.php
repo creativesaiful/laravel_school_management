@@ -1,13 +1,13 @@
 @extends('backend.layout.master')
 
-@section('title', 'Fee Entry')
+@section('title', 'Fee Edit')
 @section('content')
 
 <div class="">
-    <h4 class="box-title">Fee Add</h4>
+    <h4 class="box-title">Fee Edit</h4>
 </div>
 
-<form action="{{route("student.fees.store")}}" method="post">
+<form action="{{route("student.fees.update")}}" method="post">
     @csrf
     <div class="row">
         <div class="col-md-3">
@@ -17,8 +17,8 @@
                 <select name="year_id" id="year_id" class="form-control">
                     <option disabled selected>Select Year</option>
 
-                    @foreach ($year as $year)
-                    <option value="{{ $year->id }}">{{ $year->year }}</option>
+                    @foreach ($yearInfo as $year)
+                    <option value="{{ $year->year_id }}">{{ $year['year']['year'] }}</option>
                     @endforeach
                 </select>
 
@@ -36,8 +36,8 @@
                 <select name="class_id" id="class_id" class="form-control">
                     <option disabled selected>Select Class</option>
 
-                    @foreach ($allclass as $allclass)
-                    <option value="{{ $allclass->id }}">{{ $allclass->class_name }}</option>
+                    @foreach ($classInfo as $allclass)
+                    <option value="{{ $allclass->class_id }}">{{ $allclass['class']['class_name'] }}</option>
                     @endforeach
                 </select>
 
@@ -57,8 +57,8 @@
                 <select name="fee_category_id" id="fee_category_id" class="form-control">
                     <option disabled selected>Select Fee Type</option>
 
-                    @foreach ($feeCate as $cate)
-                    <option value="{{ $cate->id }}">{{ $cate->fee_cata_name }}</option>
+                    @foreach ($feeCateInfo as $cate)
+                    <option value="{{ $cate->fee_category_id }}">{{ $cate['feeCate']['fee_cata_name'] }}</option>
                     @endforeach
                 </select>
 
@@ -74,7 +74,13 @@
                 <label>Date <span class="text-danger">*</span> </label>
 
 
-                <input type="date" class="form-control" name="date" id="date" >
+                <select name="date" id="date" class="form-control">
+                    <option disabled selected>Select Month</option>
+
+                    @foreach ($dateInfo as $date)
+                    <option value="{{ $date->date }}">{{ date("M-Y", strtotime($date->date)) }}</option>
+                    @endforeach
+                </select>
 
                 @error('date')
                     <span class="text-danger">{{ $message }}</span>
@@ -120,9 +126,9 @@
                     <th>Name</th>
                     <th>Father's Name</th>
                     <th>Orginal Fee</th>
-                    <th>Discount Fee (%)</th>
-                    <th>Fee (This student)</th>
-                    <th>Pay Amount</th>
+
+                    <th>Collected</th>
+
 
                 </tr>
             </thead>
@@ -152,12 +158,13 @@
 
     $.ajax({
        method: 'get',
-           url: "{{ url('stufees/search') }}",
+           url: "{{ url('stufees/edit/search') }}",
            dataType: 'json',
            data: {
                yearId: yearId,
                  classId: classId,
                  feeCategoryId:feeCategoryId,
+                 date:date,
 
                },
 
@@ -170,23 +177,23 @@
                 $('#tbody').empty();
 
 
-                $.each(data.allStu, function (i, item) {
+                $.each(data.feesInfo, function (i, item) {
 
-                    var discount = (data.feeInfo.fee_amount/100)*item.discount_info.discount;
+
                         $('<tr>').html(
 
                              "<td> " +item.student.id_no + "</td>" +
                              "<td>" + item.student.name + "</td>"+
                         "<td>  " + item.student.fname + " </td>" +
-                        "<td>  " + data.feeInfo.fee_amount + " </td>"+
+                        "<td>  " + data.cateInfo.fee_amount + " </td>"+
 
-                          "<td>  " +  item.discount_info.discount + " </td>"+
-                       "<td>  " + (data.feeInfo.fee_amount-discount) + " </td>"+
+
+
                      "<td> "+
-                    "<input type='hidden' name='student_id[]' value='"+item.student.id+"'>"+
-                    "<input type='text' name='amount"+item.student.id+"' value='"+(data.feeInfo.fee_amount-discount)+"'>"+
+                     "<input type='text' name='student_id[]' value='"+item.student_id+"'>"+
+                     "<input type='text' name='amount"+item.student.id+"' value='"+(item.amount)+"'>"+
 
-                             "</td>"
+                           "</td>"
                         ).appendTo('#tbody');
                         });
 

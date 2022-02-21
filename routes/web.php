@@ -243,8 +243,15 @@ Route::prefix('stufees')->group(function(){
     route::get('view', [StudentFeeController::class, 'FeesView'])->name('student.fees.view');
     route::get('add', [StudentFeeController::class, 'FeesAdd'])->name('student.fees.add');
 
+    route::post('store', [StudentFeeController::class, 'FeesStore'])->name('student.fees.store');
+
+    route::get('edit', [StudentFeeController::class, 'FeesEdit'])->name('student.fees.edit');
+    route::post('update', [StudentFeeController::class, 'FeesUpdate'])->name('student.fees.update');
+
     //Fee search Ajax
     route::get('/search', [StudentFeeController::class, 'FeesSearch']);
+
+    route::get('edit/search', [StudentFeeController::class, 'FeesEditSearch']);
 });
 
 

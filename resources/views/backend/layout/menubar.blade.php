@@ -235,6 +235,10 @@
                             href="{{ route('student.fees.view') }}"><i class="ti-more"></i>Student Fee</a>
                     </li>
 
+                    <li class="{{ Route::currentRouteName() == 'student.fees.edit' ? 'active' : '' }}"><a
+                        href="{{ route('student.fees.edit') }}"><i class="ti-more"></i>Student Fee Edit</a>
+                </li>
+
 
 
 

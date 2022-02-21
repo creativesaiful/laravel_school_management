@@ -29,6 +29,7 @@
 
                                     <th>Year</th>
                                     <th>Class</th>
+                                    <th>Fee Type</th>
                                     <th>Amount</th>
                                     <th>Date</th>
 
@@ -48,9 +49,10 @@
                                         <td>{{  $fee['student']['name'] }}</td>
                                         <td>{{  $fee['year']['year'] }}</td>
                                         <td>{{  $fee['class']['class_name'] }}</td>
-                                        <td>{{  $fee['amount']['fee_amount'] }}</td>
+                                        <td>{{  $fee['feeCate']['fee_cata_name'] }}</td>
+                                        <td>{{  $fee->amount }}</td>
 
-                                        <td>{{$fee->date}} </td>
+                                        <td>{{date("M-Y", strtotime($fee->date))}} </td>
 
 
 
