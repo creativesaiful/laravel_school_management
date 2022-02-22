@@ -89,7 +89,7 @@
 
     <div class="form-group">
 
-        <input type="submit" class="btn btn-success" value='Add Leave'>
+        <input type="submit" class="btn btn-success" value='Add Attendence'>
     </div>
 
 </form>

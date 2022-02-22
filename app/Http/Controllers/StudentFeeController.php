@@ -15,6 +15,7 @@ class StudentFeeController extends Controller
 {
     public function FeesView(){
        $data['feeInfo'] =  StudentFees::with(['year', 'class', 'student', 'feeCate', 'amount'])->get();
+
         return view('backend.account_managment.stu_fees_view', $data);
     }//End Method
 

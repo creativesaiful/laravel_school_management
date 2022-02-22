@@ -264,7 +264,13 @@ Route::prefix('employees')->group(function(){
     route::get('payment/add', [employeeSalaryController::class, 'PayemtAdd'])->name('employees.payment.add');
 
 
+    route::post('payment/store', [employeeSalaryController::class, 'PaymentSotre'])->name('employees.payment.store');
+
+
     //ajax for search employee
 
     route::get('payment/search', [employeeSalaryController::class, 'PaymentSearch']);
+
+    route::get('payment/designation/{id}', [employeeSalaryController::class, 'PaymentDesignationSearch']);
+
 });

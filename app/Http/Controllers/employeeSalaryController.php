@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Designation;
 use App\Models\employeeAttendence;
 use App\Models\employeePayment;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class employeeSalaryController extends Controller
 {
@@ -29,30 +31,52 @@ class employeeSalaryController extends Controller
             $where[]= ['date', 'like', $date.'%'];
         }
 
-       $employeeInfo = employeeAttendence::select('employee_id')->groupBy('employee_id')->where($where)->get();
+       $employeeInfo = employeeAttendence::select('employee_id')->with(['UserData'])->groupBy('employee_id')->where($where)->get();
 
 
-
-        $totalAttend = array();
-        $absentCount = array();
-       foreach ($employeeInfo as $employee) {
-
-
-
-        $totalAttend[] = employeeAttendence::with('UserData')->where('employee_id', $employee->employee_id)->where($where)->get();
-
-       // $absentCount[] = count($totalAttend->where('attend_status', 'Absent'));
-
-
-       }
+      return response()->json($employeeInfo);
 
 
 
 
-      return response()->json(array(['totalAttend'=>$totalAttend]));
+    }//End
+
+    public function PaymentDesignationSearch(Request $request, $id) {
+        $date = date('Y-m', strtotime($request->date));
+        if($date!=null){
+            $where[]= ['date', 'like', $date.'%'];
+        }
+
+        $designation = Designation::find($id);
+
+       $absent =  count(employeeAttendence::where('employee_id', $request->empId)->where($where)->where('attend_status', 'Absent')->get());
 
 
+        return response()->json(array('designation' => $designation, 'absent' => $absent));
+    }//Ajax for designation serach and   absent count
 
 
+    public function PaymentSotre(Request $request ){
+        $date = date('Y-m', strtotime($request->date));
+
+        $count = count($request->employee_id);
+
+        for ($i=0; $i < $count ; $i++) {
+            $payment = new employeePayment();
+            $payment->employee_id = $request->employee_id[$i];
+            $payment->date = $date;
+
+            $amount = 'amount'.$payment->employee_id;
+            $payment->amount = $request->$amount;
+            $payment ->save();
+
+        }
+
+        $notification = [
+            'type'=>'success',
+            'message'=>'Payment successfully Completed'
+        ];
+
+        return redirect()->route("employees.payment.view")->with($notification);
     }
 }

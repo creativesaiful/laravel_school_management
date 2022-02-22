@@ -7,7 +7,7 @@
     <h4 class="box-title">Payment Add</h4>
 </div>
 
-<form action="{{route("student.fees.store")}}" method="post">
+<form action="{{route("employees.payment.store")}}" method="post">
     @csrf
     <div class="row">
 
@@ -18,7 +18,7 @@
                 <label>Date <span class="text-danger">*</span> </label>
 
 
-                <input type="date" class="form-control" name="date" id="date" >
+                <input type="date" class="form-control" name="date" id="date" required >
 
                 @error('date')
                     <span class="text-danger">{{ $message }}</span>
@@ -62,11 +62,13 @@
                 <tr>
                     <th>Id No</th>
                     <th>Name</th>
+                    <th>Designation</th>
 
                     <th>Basic </th>
                     <th>Absent(Days)</th>
+                    <th>Minus</th>
                     <th>Salary This Month</th>
-                    <th>Pay Amount</th>
+
 
                 </tr>
             </thead>
@@ -78,8 +80,10 @@
 
         </table>
 
-        <input type="submit" value="Submit" id="add_mark" class="btn btn-primary d-none">
+        <input type="submit" value="Submit" id="add_Payment" class="btn btn-primary d-none">
     </div>
+
+    <input type="hidden" name="">
 
 </form>
 
@@ -103,34 +107,50 @@
             success: function(data){
              if(data){
 
-// empty service table befor load
+        // empty service table befor load
                 $('#tbody').empty();
 
 
                 $.each(data, function (i, item) {
 
-                    console.log(data);
+                    var disId = item.user_data.designation_id;
+                    var empId = item.user_data.id;
 
-                        $('<tr>').html(
+                    $.ajax({
+                        type: "get",
+                        url: "{{ url('employees/payment/designation')}}" + '/' + disId,
+                        dataType: "json",
+                        data:{
+                            empId:empId,
+                            date:date
+                        },
+                        success: function (getdata) {
+                           var designatio = getdata.designation.name;
+                           var absent = getdata.absent;
+                           var basicsalary = item.user_data.salary;
+                           var perday = Math.round(basicsalary/30);
+                           var minus = Math.round(perday*absent)
 
-                             "<td> " +item.totalAttend[i].user_data.id_no + "</td>"+
-                             "<td>" + item.totalAttend[i].user_data.name + "</td>"+
-                        "<td>  " + item.totalAttend[i].user_data.salary + " </td>"+
+                           $('<tr>').html(
+                             "<td> " +item.user_data.id_no + "</td>"+
+                             "<td>" + item.user_data.name  + "</td>"+
+                             "<td>  " +   designatio  + " </td>"+
+                        "<td>  " + basicsalary  + " </td>"+
 
-                          "<td>  " +  item.absentCount + " </td>"
-                    //    "<td>  " + 1 + " </td>"+
-                    //  "<td> "+
-                    // "<input type='text' name='student_id[]' value='"+data.totalAttend.user_data.id+"'>"+
-                    // "<input type='text' name='amount"+data.totalAttend.user_data.id+"' value='"+(data.totalAttend.user_data.salary)+"'>"+
-
-                    //          "</td>"
+                       "<td>  " + absent + " </td>"+
+                       "<td>  " + minus + " </td>"+
+                     "<td> "+
+                    "<input type='hidden' name='employee_id[]' value='"+item.user_data.id+"'>"+
+                    "<input type='text' name='amount"+item.user_data.id+"' value='"+(basicsalary-minus)+"'>"+
+                             "</td>"
                         ).appendTo('#tbody');
+
+                        }
+                    });
+
+
                         });
-
-                        $("#add_mark").removeClass('d-none');
-
-             }else{
-                 alert ("Please select year,class, group and shift");
+                        $("#add_Payment").removeClass('d-none');
              }
           }
 

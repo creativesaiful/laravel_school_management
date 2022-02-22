@@ -214,7 +214,7 @@
 
     <div class="form-group">
 
-        <input type="submit" class="btn btn-success ml-3" value='Add'>
+        <input type="submit" class="btn btn-success ml-3" value='Add Employee'>
     </div>
 
 </form>
