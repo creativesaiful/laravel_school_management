@@ -239,6 +239,10 @@
                         href="{{ route('student.fees.edit') }}"><i class="ti-more"></i>Student Fee Edit</a>
                 </li>
 
+                <li class="{{ Route::currentRouteName() == 'employees.payment.view' ? 'active' : '' }}"><a
+                    href="{{ route('employees.payment.view') }}"><i class="ti-more"></i>Employee Payment</a>
+            </li>
+
 
 
 

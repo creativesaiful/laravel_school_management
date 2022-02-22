@@ -30,6 +30,8 @@ use App\Http\Controllers\MarksController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\StudentFeeController;
 
+use App\Http\Controllers\employeeSalaryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -254,4 +256,15 @@ Route::prefix('stufees')->group(function(){
     route::get('edit/search', [StudentFeeController::class, 'FeesEditSearch']);
 });
 
+//Account Manager Employee Payment
 
+Route::prefix('employees')->group(function(){
+    route::get('payment/view', [employeeSalaryController::class, 'PayemtView'])->name('employees.payment.view');
+
+    route::get('payment/add', [employeeSalaryController::class, 'PayemtAdd'])->name('employees.payment.add');
+
+
+    //ajax for search employee
+
+    route::get('payment/search', [employeeSalaryController::class, 'PaymentSearch']);
+});

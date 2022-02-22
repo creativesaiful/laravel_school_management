@@ -190,7 +190,7 @@
 
 
                      "<td> "+
-                     "<input type='text' name='student_id[]' value='"+item.student_id+"'>"+
+                     "<input type='hidden' name='student_id[]' value='"+item.student_id+"'>"+
                      "<input type='text' name='amount"+item.student.id+"' value='"+(item.amount)+"'>"+
 
                            "</td>"

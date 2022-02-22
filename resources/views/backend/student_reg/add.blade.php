@@ -129,7 +129,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label>Discount <span class="text-danger">*</span> </label>
-                <input type="text" class="form-control" name="discount">
+                <input type="text" class="form-control" name="discount" value="0">
 
                 @error('discount')
                 <span class="text-danger">{{ $message }}</span>
