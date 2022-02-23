@@ -139,7 +139,9 @@
                     var salary = item.empSalary;
                     var others = item.otherCost;
                     var totalCost = (salary+others);
-                    var profit_loss =(fees-totalCost)
+                    var profit_loss =(fees-totalCost);
+
+                    var url = "{{url('profit/details/pdf')}}/"+startDate+"/"+endDate;
 
                         $('<tr>').html(
 
@@ -150,8 +152,7 @@
 
                           "<td>  " +  profit_loss + " </td>"+
 
-                     "<td> <a href='' class='btn btn-primary' target='_blank'>Details</a> </td>"
-                        ).appendTo('#tbody');
+                        "<td> <a href='"+url+"'> Details </a> </td>").appendTo('#tbody');
                         });
 
 

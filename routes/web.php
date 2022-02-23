@@ -295,6 +295,8 @@ Route::prefix('profit')->group(function(){
 
     //Pdf generate
 
+    route::get('details/pdf/{startDate}/{endDate}', [pdfController::class, 'ProfitDetailsPdf'] );
+
 
 
 });
