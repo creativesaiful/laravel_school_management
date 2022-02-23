@@ -218,7 +218,7 @@
 
 
             </li>
-             {{-- End Marks Management --}}
+            {{-- End Marks Management --}}
 
 
             <li class="treeview">
@@ -236,12 +236,49 @@
                     </li>
 
                     <li class="{{ Route::currentRouteName() == 'student.fees.edit' ? 'active' : '' }}"><a
-                        href="{{ route('student.fees.edit') }}"><i class="ti-more"></i>Student Fee Edit</a>
-                </li>
+                            href="{{ route('student.fees.edit') }}"><i class="ti-more"></i>Student Fee Edit</a>
+                    </li>
 
-                <li class="{{ Route::currentRouteName() == 'employees.payment.view' ? 'active' : '' }}"><a
-                    href="{{ route('employees.payment.view') }}"><i class="ti-more"></i>Employee Payment</a>
+                    <li class="{{ Route::currentRouteName() == 'employees.payment.view' ? 'active' : '' }}"><a
+                            href="{{ route('employees.payment.view') }}"><i class="ti-more"></i>Employee Payment</a>
+                    </li>
+
+
+                    <li class="{{ Route::currentRouteName() == 'othercost.view' ? 'active' : '' }}"><a
+                            href="{{ route('othercost.view') }}"><i class="ti-more"></i>Other Cost</a>
+                    </li>
+
+
+
+
+
+
+
+
+
+                </ul>
+
+
+
+
             </li>
+
+            {{-- End Account Management --}}
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="book"></i>
+                    <span>Reports</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ Route::currentRouteName() == 'profit.view' ? 'active' : '' }}"><a
+                            href="{{ route('profit.view') }}"><i class="ti-more"></i>Monthly Profit/Loss</a>
+                    </li>
+
 
 
 

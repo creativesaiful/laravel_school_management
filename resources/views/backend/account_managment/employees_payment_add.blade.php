@@ -80,7 +80,7 @@
 
         </table>
 
-        <input type="submit" value="Submit" id="add_Payment" class="btn btn-primary d-none">
+        <input type="submit" value="Payment Done" id="add_Payment" class="btn btn-primary d-none">
     </div>
 
     <input type="hidden" name="">

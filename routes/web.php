@@ -31,6 +31,8 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\StudentFeeController;
 
 use App\Http\Controllers\employeeSalaryController;
+use App\Http\Controllers\othercostController;
+use App\Http\Controllers\profitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -272,5 +274,27 @@ Route::prefix('employees')->group(function(){
     route::get('payment/search', [employeeSalaryController::class, 'PaymentSearch']);
 
     route::get('payment/designation/{id}', [employeeSalaryController::class, 'PaymentDesignationSearch']);
+
+});
+
+Route::prefix('othercost')->group(function(){
+    route::get('view', [othercostController::class, 'otherCostView' ])-> name('othercost.view');
+    route::post('store', [othercostController::class, 'otherCostStore' ])-> name('othercost.store');
+    route::get('edit/{id}', [othercostController::class, 'otherCostEdit' ])-> name('othercost.edit');
+    route::post('update/{id}', [othercostController::class, 'otherCostUpdate' ])-> name('othercost.update');
+});
+
+Route::prefix('profit')->group(function(){
+    route::get('view', [profitController::class, 'profitView'] )->name('profit.view');
+
+
+
+    //Ajax for profit search
+    route::get('datewise/search', [profitController::class, 'profitDatewiseSearch'] );
+
+
+    //Pdf generate
+
+
 
 });
