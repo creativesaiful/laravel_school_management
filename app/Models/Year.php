@@ -11,4 +11,6 @@ class Year extends Model
     protected $fillable = [
         'year',
     ];
+
+    
 }

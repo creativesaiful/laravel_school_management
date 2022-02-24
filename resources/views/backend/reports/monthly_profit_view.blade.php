@@ -152,7 +152,7 @@
 
                           "<td>  " +  profit_loss + " </td>"+
 
-                        "<td> <a href='"+url+"'> Details </a> </td>").appendTo('#tbody');
+                        "<td>  <a href='"+url+"' target='_blank'> Details </a> </td>").appendTo('#tbody');
                         });
 
 

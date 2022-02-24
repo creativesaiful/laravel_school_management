@@ -31,6 +31,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\StudentFeeController;
 
 use App\Http\Controllers\employeeSalaryController;
+use App\Http\Controllers\markesheetController;
 use App\Http\Controllers\othercostController;
 use App\Http\Controllers\profitController;
 
@@ -299,4 +300,12 @@ Route::prefix('profit')->group(function(){
 
 
 
+});
+
+
+//Marksheet Generate
+
+Route::prefix('marksheet')->group(function(){
+    route::get('view',[markesheetController::class, 'MarksheetView'])->name('marksheet.view');
+    route::post('search',[markesheetController::class, 'MarksheetSearch'])->name('marksheet.search');
 });

@@ -280,12 +280,29 @@
                     </li>
 
 
+                </ul>
 
 
 
 
+            </li>
+
+            {{-- Markshee Manager  --}}
 
 
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="book"></i>
+                    <span>MarkSheet</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ Route::currentRouteName() == 'marksheet.view' ? 'active' : '' }}"><a
+                            href="{{ route('marksheet.view') }}"><i class="ti-more"></i>Marksheet Generate</a>
+                    </li>
 
 
                 </ul>
