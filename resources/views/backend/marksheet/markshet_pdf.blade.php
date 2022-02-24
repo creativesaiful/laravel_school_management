@@ -16,6 +16,9 @@
             <div class="card m-b-30">
                 <div class="card-header">
                     <h5 class="card-title">Student Marksheet</h5>
+
+                    <h4 class="btn btn-light" onclick="window.print();"> Print </h4>
+
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -43,7 +46,7 @@
                     <p style="text-align: right;"><i>Print Date: </i>{{ date('d M Y') }}</p>
                     <br>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <table class="table table-bordered">
 
                                 <tr>
@@ -112,6 +115,12 @@
                                 </thead>
                                 <tbody>
 
+                                    @php
+                                    $total_marks = 0;
+                                    $total_grade_point = 0;
+                                    $subNo = 0;
+                                    @endphp
+
 
                                     @foreach ($allMarks as $key=> $subject)
                                     <tr>
@@ -121,10 +130,19 @@
                                         <td>{{$subject['subjectinfo']['pass_mark']}}</td>
                                         <td>{{$subject->marks}}</td>
 
+                                        @php
+                                        $subNo = $subNo + 1;
+                                         $total_marks = $total_marks + $subject->marks;
 
 
-                                        <td></td>
-                                        <td></td>
+                                           $gradeRow =  App\Models\GradeSystem::where([['start_mark', '<=', (int)$subject->marks], ['end_mark', '>=', (int)$subject->marks]])->first();
+
+
+                                           $total_grade_point = $total_grade_point + $gradeRow->grade_point;
+                                       @endphp
+
+                                        <td>{{$gradeRow->grade_name}}</td>
+                                        <td>{{$gradeRow->grade_point}}</td>
                                     </tr>
                                     @endforeach
 
@@ -134,9 +152,9 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="4" style="text-align: right;">Total Marks</td>
-                                        <td></td>
+                                        <td>{{ $total_marks}}</td>
                                         <td colspan="" style="text-align: right;">Total Grade Point</td>
-                                        <td></td>
+                                        <td>{{$total_grade_point}}</td>
                                     </tr>
 
                                 </tfoot>
@@ -146,27 +164,55 @@
                     <br>
                     <div class="row">
                         <div class="col-md-10">
-                            <table class="table">
+                            <table class="table table-bordered">
 
                                 <tr>
                                     <td>Result</td>
-                                    <td></td>
+                                    <td>
+                                        @if ($fail_count > 0)
+                                        Fail
+                                        @else
+                                         Pass
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
+
+                                    @php
+                                    $gpa = (float)$total_grade_point / $subNo;
+
+                    $pointRow =  App\Models\GradeSystem::where([['start_point', '<=', (int)$gpa], ['end_point', '>=', (int)$gpa]])->first();
+                                    @endphp
+
+
                                     <td>GPA</td>
-                                    <td></td>
+                                    <td>
+                                        @if ($fail_count > 0)
+                                        0
+                                        @else
+                                         {{$gpa}}
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Letter Grade</td>
-                                    <td></td>
+                                    <td>
+
+                                        @if ($fail_count > 0)
+                                        0
+                                        @else
+                                        {{$pointRow->grade_name}}
+                                        @endif
+
+                                       </td>
                                 </tr>
                                 <tr>
                                     <td>Total Marks</td>
-                                    <td></td>
+                                    <td>{{$total_marks}}</td>
                                 </tr>
                                 <tr>
                                     <td>Remarks</td>
-                                    <td></td>
+                                    <td>{{$pointRow->remark}}</td>
                                 </tr>
 
                             </table>

@@ -33,7 +33,7 @@ class markesheetController extends Controller
         $exam_id = $request->exam_id;
         $id_no = $request->id_no;
 
-        $fail_count = StudentMarks::where('year_id', $year_id)->where('class_id', $class_id)->where('exam_id', $exam_id)->where('id_no', $id_no)->where('marks','>',33)->get()->count();
+        $fail_count = StudentMarks::where('year_id', $year_id)->where('class_id', $class_id)->where('exam_id', $exam_id)->where('id_no', $id_no)->where('marks','<',33)->get()->count();
 
         $singStu = StudentMarks::where('year_id', $year_id)->where('class_id', $class_id)->where('exam_id', $exam_id)->where('id_no', $id_no)->first();
 
