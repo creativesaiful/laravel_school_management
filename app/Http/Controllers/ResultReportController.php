@@ -33,10 +33,11 @@ class ResultReportController extends Controller
             $data['allData'] = StudentMarks::with(['studentInfo', 'yearinfo', 'classinfo', 'examinfo'])->select('year_id', 'class_id', 'exam_id', 'student_id')->where('year_id', $request->year_id)->where('class_id', $request->class_id)->where('exam_id', $request->exam_id)->groupBy('year_id')->groupBy('class_id')->groupBy('exam_id')->groupBy('student_id')->get();
 
             //return ( $data['allData']);
+           // return view('backend.reports.student_result_pdf', $data);
 
-            $pdf = PDF::loadView('backend.reports.student_result_pdf', $data);
-            $pdf->SetProtection(['copy', 'print'], '', 'pass');
-            return $pdf->stream('result_report.pdf');
+           $pdf = PDF::loadView('backend.reports.student_result_pdf', $data);
+           $pdf->SetProtection(['copy', 'print'], '', 'pass');
+           return $pdf->stream('result_report.pdf');
 
 
         }else{

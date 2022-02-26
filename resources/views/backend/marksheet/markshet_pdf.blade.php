@@ -190,7 +190,7 @@
                                         @if ($fail_count > 0)
                                         0
                                         @else
-                                         {{$gpa}}
+                                        {{ number_format($gpa, 2, '.', '') }}
                                         @endif
                                     </td>
                                 </tr>

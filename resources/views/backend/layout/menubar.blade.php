@@ -18,7 +18,7 @@
         <ul class="sidebar-menu" data-widget="tree">
 
             <li>
-                <a href="">
+                <a href="{{route('dashboard')}}">
                     <i data-feather="pie-chart"></i>
                     <span>Dashboard</span>
                 </a>
@@ -75,7 +75,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="book"></i>
+                    <i data-feather="settings"></i>
                     <span>Setup Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -122,7 +122,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="book"></i>
+                    <i data-feather="book-open"></i>
                     <span>Student Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -148,7 +148,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="book"></i>
+                    <i data-feather="briefcase"></i>
                     <span>Employee Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -186,7 +186,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="book"></i>
+                    <i data-feather="box"></i>
                     <span>Marks Managment</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -223,7 +223,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="book"></i>
+                    <i data-feather="command"></i>
                     <span>Accounts Managment</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -267,7 +267,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="book"></i>
+                    <i data-feather="pie-chart"></i>
                     <span>Reports</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -301,7 +301,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="book"></i>
+                    <i data-feather="smile"></i>
                     <span>MarkSheet</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
