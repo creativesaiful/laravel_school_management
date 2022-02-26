@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\attendenceReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\classController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\employeeSalaryController;
 use App\Http\Controllers\markesheetController;
 use App\Http\Controllers\othercostController;
 use App\Http\Controllers\profitController;
+use App\Http\Controllers\ResultReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -308,4 +310,17 @@ Route::prefix('profit')->group(function(){
 Route::prefix('marksheet')->group(function(){
     route::get('view',[markesheetController::class, 'MarksheetView'])->name('marksheet.view');
     route::post('search',[markesheetController::class, 'MarksheetSearch'])->name('marksheet.search');
+});
+
+Route::prefix('attendence/report')->group(function(){
+    route::get('employee', [attendenceReportController::class, 'employeeAttendence'])->name('attendence.report.employee');
+
+    //PDF Report
+    route::post('employee/search', [attendenceReportController::class, 'employeeAttendenceSearch'])->name('attendence.report.employee.search');
+});
+
+Route::prefix('exam/report')->group(function(){
+    route::get('view', [ResultReportController::class, 'ResullReportView'])->name('exam.report.view');
+
+    route::post('pdf', [ResultReportController::class, 'ResultReportPdf'])->name('exam.report.pdf');
 });

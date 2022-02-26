@@ -279,6 +279,15 @@
                             href="{{ route('profit.view') }}"><i class="ti-more"></i>Monthly Profit/Loss</a>
                     </li>
 
+                     <li class="{{ Route::currentRouteName() == 'attendence.report.employee' ? 'active' : '' }}"><a
+                            href="{{ route('attendence.report.employee') }}"><i class="ti-more"></i>Monthly Attendence</a>
+                    </li>
+
+                    <li class="{{ Route::currentRouteName() == 'exam.report.view' ? 'active' : '' }}"><a
+                        href="{{ route('exam.report.view') }}"><i class="ti-more"></i>Exam Report</a>
+                </li>
+
+
 
                 </ul>
 
